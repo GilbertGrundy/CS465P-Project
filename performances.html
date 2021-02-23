@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Club Performances</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="banner">
+            <div class="menu">
+                <button class="menuBtn">Menu</button>
+                <div class="menu-content">
+                    <a href="#">Home</a>
+                    <a href="#">Records</a>
+                    <a href="#">Performances</a>
+                    <a href="#">Photo Gallery</a>
+                    <a href="#">Upcoming Events</a>
+                    <a href="#">Login</a>
+                </div>
+            </div>
+            <img id="logo" src="images/logo.png" alt="logo">
+        </div>
+        <h1>Club Performances</h1>
+        <form id="performForm">
+            <label for="terrain">Terrain</label>
+            <select name="terrain" id="terrain">
+                <option value="Road">Road</option>
+                <option value="Grass Field">Grass Field</option>
+                <option value="Trail">Trail</option>
+                <option value="Beach">Beach</option>
+            </select>
+            <br>
+            <label for="distance">Distance</label>
+            <select name="distance" id="distance">
+                <option value="Marathon">Maration</option>
+                <option value="Half Marathon">Half Maration</option>
+                <option value="10K">10K</option>
+                <option value="5k">5k</option>
+            </select>
+            <br><br>
+            <input type="button" id="submitBtn" value="Submit" onclick="getPerformanceData()"></input>
+        </form>
+        <br><br>
+        <section id="tables" class="tables">
+            <div>
+                <h2><label for="mensPerformanceTable">Men</label></h2>
+                <table id="mensPerformanceTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="womensPerformanceTable">Women</label></h2>
+                <table id="womensPerformanceTable" class="tables"></table>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>

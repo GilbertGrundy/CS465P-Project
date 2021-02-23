@@ -1,0 +1,76 @@
+body{
+    margin-left: auto;
+    margin-right: auto;
+    width: 75%;
+}
+
+table{
+    display: block;
+    width: 75%;
+}
+
+.tables{
+    margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    text-align: center;
+}
+
+#tables{
+    visibility: hidden;
+}
+
+table, td{
+    border: 1px solid black;
+}
+
+.banner{
+    background-color: black;    
+    position: relative;
+}
+
+#logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width:15%;
+  }
+
+
+
+  .menuBtn {
+    background-color: black;
+    color: white;
+    padding: 16px;
+    font-size: 16px;
+    border: none;
+  }
+  
+  .menu {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: inline-block;
+  }
+  
+  .menu-content {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+  
+  .menu-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+  
+  .menu-content a:hover {background-color: #ddd;}
+  
+  .menu:hover .menu-content {display: block;}
+  
+  .menu:hover .dropbtn {background-color: black;}
