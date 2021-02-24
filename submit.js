@@ -12,6 +12,7 @@ app.post("/submit", (req, res) => {
   
   rp("https://restcountries.eu/rest/v2/all?fields=name;capital;population;region;")
     .then((body) => {
+      res.header("Access-Control-Allow-Origin", "*");
       res.send(body);
     })
     .catch((err) => {

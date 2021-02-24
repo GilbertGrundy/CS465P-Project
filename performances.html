@@ -14,33 +14,35 @@
             <div class="menu">
                 <button class="menuBtn">Menu</button>
                 <div class="menu-content">
-                    <a href="#">Home</a>
-                    <a href="#">Records</a>
-                    <a href="#">Performances</a>
-                    <a href="#">Photo Gallery</a>
-                    <a href="#">Upcoming Events</a>
-                    <a href="#">Login</a>
+                    <a href="/index.html">Home</a>
+                    <a href="/records.html">Records</a>
+                    <a href="performances.html">Performances</a>
+                    <a href="gallery.html">Photo Gallery</a>
+                    <a href="events.html">Upcoming Events</a>
+                    <a href="login.html">Login</a>
                 </div>
             </div>
             <img id="logo" src="images/logo.png" alt="logo">
         </div>
         <h1>Club Performances</h1>
         <form id="performForm">
-            <label for="terrain">Terrain</label>
-            <select name="terrain" id="terrain">
-                <option value="Road">Road</option>
-                <option value="Grass Field">Grass Field</option>
-                <option value="Trail">Trail</option>
-                <option value="Beach">Beach</option>
-            </select>
-            <br>
-            <label for="distance">Distance</label>
-            <select name="distance" id="distance">
-                <option value="Marathon">Maration</option>
-                <option value="Half Marathon">Half Maration</option>
-                <option value="10K">10K</option>
-                <option value="5k">5k</option>
-            </select>
+            <div>
+                <label for="terrain">Terrain</label>
+                <select name="terrain" id="terrain">
+                    <option value="Road">Road</option>
+                    <option value="Grass Field">Grass Field</option>
+                    <option value="Trail">Trail</option>
+                    <option value="Beach">Beach</option>
+                </select>
+                <br><br>
+                <label for="distance">Distance</label>
+                <select name="distance" id="distance">
+                    <option value="Marathon">Maration</option>
+                    <option value="Half Marathon">Half Maration</option>
+                    <option value="10K">10K</option>
+                    <option value="5k">5k</option>
+                </select>
+            </div>
             <br><br>
             <input type="button" id="submitBtn" value="Submit" onclick="getPerformanceData()"></input>
         </form>
@@ -56,6 +58,7 @@
                 <table id="womensPerformanceTable" class="tables"></table>
             </div>
         </section>
+       
     </main>
 </body>
 

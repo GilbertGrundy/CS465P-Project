@@ -55,4 +55,3 @@ function getPerformanceData() {
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
 }
-

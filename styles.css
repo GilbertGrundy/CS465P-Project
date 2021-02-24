@@ -9,11 +9,21 @@ table{
     width: 75%;
 }
 
+form{
+  padding: 10px;
+  border: 1px solid black;
+}
+
+label{
+  font-weight: bold;
+}
+
 .tables{
     margin-left: auto;
     margin-right: auto;
     display: flex;
     text-align: center;
+    border: 1px solid black;
 }
 
 #tables{
@@ -36,7 +46,13 @@ table, td{
     width:15%;
   }
 
+#terrain{
+  margin-left: 5px;
+}
 
+#updateSubmitBtn{
+  display: none;
+}
 
   .menuBtn {
     background-color: black;

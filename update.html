@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Modify Athlete Data</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="banner">
+            <div class="menu">
+                <button class="menuBtn">Menu</button>
+                <div class="menu-content">
+                    <a href="/index.html">Home</a>
+                    <a href="/records.html">Records</a>
+                    <a href="performances.html">Performances</a>
+                    <a href="gallery.html">Photo Gallery</a>
+                    <a href="events.html">Upcoming Events</a>
+                    <a href="login.html">Login</a>
+                </div>
+            </div>
+            <img id="logo" src="images/logo.png" alt="logo">
+        </div>
+        <h1>Modify Athlete Data</h1>
+        <form id="performForm">
+            <div>
+                <select name="action" id="actionDDL">
+                    <option value="" disabled selected>Select a request</option>
+                    <option value="add new record">add new record</option>
+                    <option value="add new performance">add new performance</option>
+                    <option value="update record">update record</option>
+                    <option value="update performance">update performance</option>
+                    <option value="delete record">delete record</option>
+                    <option value="delete performance">delete performance</option>
+                </select>
+            </div>
+            <br><br>
+            <input type="button" id="updateSubmitBtn" value="Submit" onclick="sendUserInsertRequest()"></input>
+        </form>
+    </main>
+</body>
+
+</html>
