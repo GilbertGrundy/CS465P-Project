@@ -46,8 +46,12 @@ table, td{
     width:15%;
   }
 
-#terrain{
+#terrainDDL{
   margin-left: 5px;
+}
+
+#insertRecord{
+  display: none;
 }
 
 #updateSubmitBtn{

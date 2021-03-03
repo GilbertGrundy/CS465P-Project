@@ -35,7 +35,7 @@ function getPerformanceData() {
         tempCell3.innerHTML = data[i].population;
         tempCell4.innerHTML = data[i].region;
       }
-      document.getElementById("tables").style.visibility= 'visible' ;
+      document.getElementById("tables").style.visibility = 'visible' ;
     }
   };
 
@@ -49,9 +49,13 @@ function getPerformanceData() {
   */
   let paramsString =
     "terrain=" +
-    document.getElementById("terrain").value +
+    document.getElementById("terrainDDL").value +
     "&distance=" +
-    document.getElementById("distance").value;
+    document.getElementById("distanceDDL").value;
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
+}
+
+function showSelectedUpdateForm(){
+  document.getElementById("insertRecord").style.display = 'block';
 }
