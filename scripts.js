@@ -11,42 +11,57 @@ function getPerformanceData() {
       let womensTable = document.getElementById("womensPerformanceTable");
       let data = JSON.parse(xhr.responseText);
 
+      //empty the tables if they have any old data in them
+      for (
+        var i = document.getElementById("mensPerformanceTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("mensPerformanceTable").deleteRow(i - 1);
+      }
+      for (
+        var i = document.getElementById("womensPerformanceTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("womensPerformanceTable").deleteRow(i - 1);
+      }
+
       //insert performance data into the performance.html mens/womens tables
       for (let i = 0; i < data.length; i++) {
-        let tempRow = mensTable.insertRow(i);
+        let tempRow;
+        let mensTableRowCount;
+        let womensTableRowCount;
+
+        if (data[i].sex === "M") {
+          mensTableRowCount = document.getElementById("mensPerformanceTable")
+            .rows.length;
+          tempRow = mensTable.insertRow(mensTableRowCount);
+        } else {
+          womensTableRowCount = document.getElementById(
+            "womensPerformanceTable"
+          ).rows.length;
+          tempRow = womensTable.insertRow(womensTableRowCount);
+        }
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
         let tempCell4 = tempRow.insertCell(3);
-
-        tempCell1.innerHTML = data[i].name;
-        tempCell2.innerHTML = data[i].capital;
-        tempCell3.innerHTML = data[i].population;
-        tempCell4.innerHTML = data[i].region;
-
-        tempRow = womensTable.insertRow(i);
-        tempCell1 = tempRow.insertCell(0);
-        tempCell2 = tempRow.insertCell(1);
-        tempCell3 = tempRow.insertCell(2);
-        tempCell4 = tempRow.insertCell(3);
-
-        tempCell1.innerHTML = data[i].name;
-        tempCell2.innerHTML = data[i].capital;
-        tempCell3.innerHTML = data[i].population;
-        tempCell4.innerHTML = data[i].region;
+        let tempCell5 = tempRow.insertCell(4);
+        if (data[i].sex === "M") {
+          tempCell1.innerHTML = mensTableRowCount + 1;
+        } else {
+          tempCell1.innerHTML = womensTableRowCount + 1;
+        }
+        tempCell2.innerHTML = data[i].time;
+        tempCell3.innerHTML = data[i].name;
+        tempCell4.innerHTML = data[i].date.slice(0, 10);
+        tempCell5.innerHTML = data[i].location;
       }
-      document.getElementById("tables").style.visibility = 'visible' ;
+      document.getElementById("tables").style.visibility = "visible";
     }
   };
 
-  /*
-  let formData = new FormData();
-  formData.append("Terrain", document.getElementById("terrain").value);
-  formData.append("Distance", document.getElementById("distance").value);
-  for (var pair of formData.entries()) {
-    console.log(pair[0] + ", " + pair[1]);
-  }
-  */
   let paramsString =
     "terrain=" +
     document.getElementById("terrainDDL").value +
@@ -56,6 +71,6 @@ function getPerformanceData() {
   xhr.send(params);
 }
 
-function showSelectedUpdateForm(){
-  document.getElementById("insertRecord").style.display = 'block';
+function showSelectedUpdateForm() {
+  document.getElementById("insertRecord").style.display = "block";
 }
