@@ -28,9 +28,12 @@
         <form id="recordForm">
             <div>
                 <label for="terrain">Terrain</label>
-                <select name="terrain" id="terrainDDL">
+                <select name="terrain" id="terrainDDL" onchange="loadEvents()">
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
+                    <option value="Road">Outdoor</option>
+                    <option value="XC">Outdoor</option>
+                    <option value="Trail">Outdoor</option>
                 </select>
                 <br><br>
                 <label for="eventDDL">Event</label>
