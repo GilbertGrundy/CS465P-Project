@@ -74,3 +74,23 @@ function getPerformanceData() {
 function showSelectedUpdateForm() {
   document.getElementById("insertRecord").style.display = "block";
 }
+
+//TODO: implement sendUserCRUDrequest()
+function sendUserCRUDrequest() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:5000/update");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Request finished. Do processing here.
+    }
+
+    //pull user input from the webform
+    //validate user input
+    //let paramsString =
+    //let params = new URLSearchParams(paramsString);
+    //xhr.send(params);
+  };
+}

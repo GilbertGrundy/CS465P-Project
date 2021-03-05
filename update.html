@@ -36,21 +36,27 @@
             </div>
             <br>
             <div id="insertRecord">
-                <label for="athlete">Athlete</label>
-                <input type="text" id="athlete">
-                <label for="terrain">Terrain</label>
-                <input type="text" id="terrain">
-                <label for="distance">Distance</label>
-                <input type="text" id="distance">
                 <label for="mark">Mark</label>
-                <input type="text" id="mark">
-                <label for="event">Event</label>
-                <input type="text" id="event">
+                <input type="text" id="mark" value="">
+                <label for="name">Name</label>
+                <input type="text" id="name" value="">
                 <label for="date">Date</label>
-                <input type="text" id="date">
+                <input type="text" id="date" value="">
+                <label for="venue">Venue</label>
+                <input type="text" id="venue" value="">
+                <label for="event">Event</label>
+                <input type="text" id="event" value="">
+                <label for="terrain">Terrain</label>
+                <input type="text" id="terrain" value="">
+                <label for="sex">Sex</label>
+                <input type="text" id="sex" value="">
+                <label for="relay">Relay</label>
+                <input type="text" id="relay" value="">
+                <label for="timetrial">Time Trial</label>
+                <input type="text" id="timetrial" value="">
             </div>
             <br><br>
-            <input type="button" id="updateSubmitBtn" value="Submit" onclick="sendUserInsertRequest()"></input>
+            <input type="button" id="updateSubmitBtn" value="Submit" onclick="sendUserCRUDrequest()"></input>
         </form>
     </main>
 </body>
