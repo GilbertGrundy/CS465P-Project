@@ -19,7 +19,31 @@ con.connect(function (err) {
 
 app.use(express.urlencoded({ extended: true }));
 
-app.post("/submit", (req, res) => {
+app.post("/submitPerformances", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  //TODO: sanitize keys/values
+  let queryString =
+    "select mark, mark, name, date_of, venue, sex from results where " +
+    keys[0] +
+    '="' +
+    values[0] +
+    '" and ' +
+    keys[1] +
+    '="' +
+    values[1] +
+    '"';
+  let params =
+    keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";";
+  console.log(params);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
+app.post("/submitRecords", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
   //TODO: sanitize keys/values

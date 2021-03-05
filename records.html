@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Club Performances</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="banner">
+            <div class="menu">
+                <button class="menuBtn">Menu</button>
+                <div class="menu-content">
+                    <a href="/index.html">Home</a>
+                    <a href="/records.html">Records</a>
+                    <a href="performances.html">Performances</a>
+                    <a href="gallery.html">Photo Gallery</a>
+                    <a href="events.html">Upcoming Events</a>
+                    <a href="update.html">Update</a>
+                </div>
+            </div>
+            <img id="logo" src="images/logo.png" alt="logo">
+        </div>
+        <h1>Club Records</h1>
+        <form id="recordForm">
+            <div>
+                <label for="terrain">Terrain</label>
+                <select name="terrain" id="terrainDDL">
+                    <option value="Indoor">Indoor</option>
+                    <option value="Outdoor">Outdoor</option>
+                </select>
+                <br><br>
+                <label for="eventDDL">Event</label>
+                <select name="event" id="eventDDL">
+                    <option value="Marathon">Maration</option>
+                    <option value="Mile">1 Mile</option>
+                    <option value="10000M">10,000M</option>
+                    <option value="6400M">6,400M</option>
+                    <option value="5000M">5,000M</option>
+                    <option value="3000M">3,000M</option>
+                    <option value="2000M">2,000M</option>
+                    <option value="1500M">1,500M</option>
+                    <option value="1000M">1,000M</option>
+                    <option value="800M">800M</option>
+                    <option value="600M">600M</option>
+                    <option value="400M">400M</option>
+                    <option value="200M">200M</option>
+                </select>
+            </div>
+            <br><br>
+            <input type="button" id="submitBtn" value="SubmitRecords" onclick="getRecordData()"></input>
+        </form>
+        <br><br>
+        <section id="tables" class="tables">
+            <div>
+                <h2><label for="mensRecordTable">Men</label></h2>
+                <table id="mensRecordTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="womensRecordTable">Women</label></h2>
+                <table id="womensRecordTable" class="tables"></table>
+            </div>
+        </section>
+       
+    </main>
+</body>
+
+</html>
