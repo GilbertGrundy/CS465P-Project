@@ -33,7 +33,7 @@ function getPerformanceData() {
         let mensTableRowCount;
         let womensTableRowCount;
 
-        if (data[i].sex === "M") {
+        if (data[i].sex === 0) {
           mensTableRowCount = document.getElementById("mensPerformanceTable")
             .rows.length;
           tempRow = mensTable.insertRow(mensTableRowCount);
@@ -48,15 +48,15 @@ function getPerformanceData() {
         let tempCell3 = tempRow.insertCell(2);
         let tempCell4 = tempRow.insertCell(3);
         let tempCell5 = tempRow.insertCell(4);
-        if (data[i].sex === "M") {
+        if (data[i].sex === 0) {
           tempCell1.innerHTML = mensTableRowCount + 1;
         } else {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
-        tempCell2.innerHTML = data[i].time;
+        tempCell2.innerHTML = data[i].mark;
         tempCell3.innerHTML = data[i].name;
-        tempCell4.innerHTML = data[i].date.slice(0, 10);
-        tempCell5.innerHTML = data[i].location;
+        tempCell4.innerHTML = data[i].date_of.slice(0, 10);
+        tempCell5.innerHTML = data[i].venue;
       }
       document.getElementById("tables").style.visibility = "visible";
     }
@@ -65,8 +65,8 @@ function getPerformanceData() {
   let paramsString =
     "terrain=" +
     document.getElementById("terrainDDL").value +
-    "&distance=" +
-    document.getElementById("distanceDDL").value;
+    "&event=" +
+    document.getElementById("eventDDL").value;
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
 }

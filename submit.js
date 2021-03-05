@@ -22,7 +22,7 @@ app.post("/submit", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
   let queryString =
-    "select ID, time, name, date, location, sex from members where " +
+    "select mark, mark, name, date_of, venue, sex from results where " +
     keys[0] +
     '="' +
     values[0] +
