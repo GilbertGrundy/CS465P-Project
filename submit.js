@@ -47,19 +47,42 @@ app.post("/submitRecords", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
   //TODO: sanitize keys/values
-  let queryString =
-    "select mark, mark, name, date_of, venue, sex from results where " +
-    keys[0] +
-    '="' +
-    values[0] +
-    '" and ' +
-    keys[1] +
-    '="' +
-    values[1] +
-    '"';
+  let queryString ="(SELECT DISTINCT " +
+                      "name, " +
+                      "MIN(mark) " +
+                    "FROM " +
+                      "jbac_records.results " +
+                    "WHERE " +
+                      "terrain = \"" + values[0] + "\" " +
+                      "AND event = \"" + values[1] + "\" " +
+                    "GROUP BY " +
+                      "name, " +
+                      "terrain, " +
+                      "event " +
+                    "ORDER BY " +
+                      "mark ASC " +
+                    "Limit 10 ) " +
+                    "UNION " +
+                    "(SELECT DISTINCT " +
+                      "name, " +
+                      "MIN(mark) " +
+                    "FROM " +
+                      "jbac_records.results " +
+                    "WHERE " +
+                      "terrain = \"" + values[0] + "\" " +
+                        "AND event = \"" + values[1] + "\" " + 
+                        "AND sex = 1 " +
+                    "GROUP BY " +
+                      "name, " +
+                      "terrain, " +
+                      "event " +
+                    "ORDER BY  " +
+                      "mark ASC " +
+                    "Limit 10) ";
   let params =
     keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";";
   console.log(params);
+  console.log(queryString);
 
   con.query(queryString, (error, results, fields) => {
     res.header("Access-Control-Allow-Origin", "*");

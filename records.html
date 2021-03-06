@@ -28,16 +28,18 @@
         <form id="recordForm">
             <div>
                 <label for="terrain">Terrain</label>
-                <select name="terrain" id="terrainDDL">
+                <select name="terrain" id="terrainDDL" onchange="loadEvents()">
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
                     <option value="Road">Road</option>
                     <option value="XC">XC</option>
-                    <option value="Trail">XC</option>
+                    <option value="Trail">Trail</option>
                 </select>
+                <label for="eventDDL">Event</label>
+                <select name="event" id="eventDDL"></select>
             </div>
             <br><br>
-            <input type="button" id="getEvents" value="getEvents" onclick="loadEvents()"></input>
+            <br><br>
             <input type="button" id="submitBtn" value="SubmitRecords" onclick="getRecordData()"></input>
         </form>
         <br><br>

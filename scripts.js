@@ -172,35 +172,22 @@ function loadEvents(){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/events");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  console.log("scripts Events!");
   console.log(xhr.readyState);
   
-  let eventList = document.getElementById("eventDDLRecords");
-  let form = document.getElementById("recordForm");
-  let sub_button = document.getElementById("getEvents")
-  //let terrain = document.getElementById("terrainDDL");
+  let eventList = document.getElementById("eventDDL");
 
   xhr.onreadystatechange = function () {
     // Call a function when the state changes.
     console.log("In onreadystatechange");
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      let list = document.createElement("select");
-      let line = document.createElement("br");
-      list.name = "event";
-      list.id = "eventDDL";
-      // Request finished. Do processing here.
       let data = JSON.parse(xhr.responseText);
       console.log("Within IF");
       for (let i = 0; i < data.length; i++) {
         let option = document.createElement('option');
         option.value = data[i].event;
         option.text = data[i].event;
-        list.appendChild(option);
+        eventList.appendChild(option);
       }
-      form.insertBefore(list,sub_button);
-      form.insertBefore(line,sub_button);
-      form.insertBefore(line,sub_button);
-
     }
   }
   let paramsString = "terrain=" + document.getElementById("terrainDDL").value;
