@@ -1,4 +1,4 @@
-function getPerformanceData() {
+function performanceSubmitBtn_Click() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/submit");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -76,7 +76,18 @@ function showSelectedUpdateForm() {
 }
 
 //TODO: implement sendUserCRUDrequest()
-function sendUserCRUDrequest() {
+function updateSubmitBtn_Click() {
+  //clear any error messages from previous user actions
+  document.getElementById("error").innerHTML = "";
+  
+  let requestType = document.getElementById("actionDDL").value;
+  if (requestType === "add") {
+    if (isValidAddRequest() === false) {
+      console.log("Invalid user input dectected.  Terminating script.");
+      return;
+    }
+  }
+
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/update");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -86,11 +97,95 @@ function sendUserCRUDrequest() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Do processing here.
     }
-
-    //pull user input from the webform
-    //validate user input
-    //let paramsString =
-    //let params = new URLSearchParams(paramsString);
-    //xhr.send(params);
   };
+  //find out type of request
+
+  //let paramsString =
+  //let params = new URLSearchParams(paramsString);
+  //xhr.send(params);
+}
+
+function isValidAddRequest() {
+  //pull and validate user input
+  let regex = /[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2}/;
+  let mark = document.getElementById("markTB").value;
+  let isValidMark = regex.test(mark);
+  if (isValidMark === false) {
+    displayErrorMsgToUser("mark", "00:00:00.00");
+    return false;
+  }
+
+  regex = /[A-Za-z]{1,127} [A-Za-z]{1,127}/;
+  let name = document.getElementById("nameTB").value;
+  let isValidName = regex.test(name);
+  if (isValidName === false) {
+    displayErrorMsgToUser(
+      "name",
+      "[first name] [last name] *only upper/lower case letters allowed"
+    );
+    return false;
+  }
+
+  regex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+  let date = document.getElementById("dateTB").value;
+  let isValidDate = regex.test(date);
+  if (isValidDate === false) {
+    displayErrorMsgToUser("date", "yyyy-mm-dd");
+    return false;
+  }
+
+  regex = /[a-zA-Z ]{1,255}/;
+  let venue = document.getElementById("venueTB").value;
+  let isValidVenue = regex.test(venue);
+  if (isValidVenue === false) {
+    displayErrorMsgToUser(
+      "venue",
+      "only upper/lower case letters and spaces allowed"
+    );
+    return false;
+  }
+
+  regex = /[a-zA-Z0-9 ]{1,255}/;
+  let event = document.getElementById("eventTB").value;
+  let isValidEvent = regex.test(event);
+  if (isValidEvent === false) {
+    displayErrorMsgToUser(
+      "event",
+      "only alphanumberic characters and spaces allowed"
+    );
+    return false;
+  }
+
+  regex = /[a-zA-Z ]{1,255}/;
+  let terrain = document.getElementById("terrainTB").value;
+  let isValidTerrain = regex.test(terrain);
+  if (isValidTerrain === false) {
+    displayErrorMsgToUser(
+      "terrain",
+      "only upper/lower case letters and spaces allowed"
+    );
+    return false;
+  }
+
+  if(document.getElementById("sexDDL").selectedIndex === 0){
+    displayErrorMsgToUser("sex", "must choose a list option");
+    return false;
+  }
+  if(document.getElementById("relayDDL").selectedIndex === 0){
+    displayErrorMsgToUser("relay", "must choose a list option");
+    return false;
+  }
+  if(document.getElementById("timetrialDDL").selectedIndex === 0){
+    displayErrorMsgToUser("time trial", "must choose a list option");
+    return false;
+  }
+
+  return true;
+}
+
+function displayErrorMsgToUser(formFieldWithError, correctFieldFormat) {
+  let errorField = document.getElementById("error").innerHTML;
+  let message = "<br>" + "Error: problem with " + "<strong>" + formFieldWithError +"</strong>" + " field. " + "<br>" + "Entry must follow this format:" + " <strong>" + correctFieldFormat + "</strong><br>";
+  let formattedMessage = message.fontcolor("red");
+  document.getElementById("error").innerHTML = formattedMessage;
 }

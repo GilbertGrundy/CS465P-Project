@@ -26,6 +26,7 @@
         </div>
         <h1>Club Performances</h1>
         <form id="performForm">
+            <!--TODO: add fields to event and terrain DDL's to reflect new entries in the DB-->
             <div>
                 <label for="terrain">Terrain</label>
                 <select name="terrain" id="terrainDDL">
@@ -51,7 +52,7 @@
                 </select>
             </div>
             <br><br>
-            <input type="button" id="submitBtn" value="Submit" onclick="getPerformanceData()"></input>
+            <input type="button" id="submitBtn" value="Submit" onclick="performanceSubmitBtn_Click()"></input>
         </form>
         <br><br>
         <section id="tables" class="tables">
