@@ -1,12 +1,14 @@
+window.onload = function () {
+  printUpdateResult();
+};
+
 function performanceSubmitBtn_Click() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/submit");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
-    // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-      // Request finished. Do processing here.
       let mensTable = document.getElementById("mensPerformanceTable");
       let womensTable = document.getElementById("womensPerformanceTable");
       let data = JSON.parse(xhr.responseText);
@@ -72,14 +74,14 @@ function performanceSubmitBtn_Click() {
 }
 
 function showSelectedUpdateForm() {
+  document.getElementById("result").innerHTML = ""; //clear results messages
   document.getElementById("insertRecord").style.display = "block";
 }
 
-//TODO: implement sendUserCRUDrequest()
 function updateSubmitBtn_Click() {
   //clear any error messages from previous user actions
   document.getElementById("error").innerHTML = "";
-  
+
   let requestType = document.getElementById("actionDDL").value;
   if (requestType === "add") {
     if (isValidAddRequest() === false) {
@@ -96,13 +98,42 @@ function updateSubmitBtn_Click() {
     // Call a function when the state changes.
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Do processing here.
+      let data = JSON.parse(xhr.responseText);
+      sessionStorage.setItem("insertResult", data.message);
+      location.reload();
     }
   };
-  //find out type of request
 
-  //let paramsString =
-  //let params = new URLSearchParams(paramsString);
-  //xhr.send(params);
+  let paramsString =
+    "mark=" +
+    document.getElementById("markTB").value +
+    "&" +
+    "name=" +
+    document.getElementById("nameTB").value +
+    "&" +
+    "date_of=" +
+    document.getElementById("dateTB").value +
+    "&" +
+    "venue=" +
+    document.getElementById("venueTB").value +
+    "&" +
+    "event=" +
+    document.getElementById("eventTB").value +
+    "&" +
+    "terrain=" +
+    document.getElementById("terrainTB").value +
+    "&" +
+    "sex=" +
+    document.getElementById("sexDDL").value +
+    "&" +
+    "relay=" +
+    document.getElementById("relayDDL").value +
+    "&" +
+    "timetrial=" +
+    document.getElementById("timetrialDDL").value;
+  console.log(paramsString);
+  let params = new URLSearchParams(paramsString);
+  xhr.send(params);
 }
 
 function isValidAddRequest() {
@@ -167,15 +198,15 @@ function isValidAddRequest() {
     return false;
   }
 
-  if(document.getElementById("sexDDL").selectedIndex === 0){
+  if (document.getElementById("sexDDL").selectedIndex === 0) {
     displayErrorMsgToUser("sex", "must choose a list option");
     return false;
   }
-  if(document.getElementById("relayDDL").selectedIndex === 0){
+  if (document.getElementById("relayDDL").selectedIndex === 0) {
     displayErrorMsgToUser("relay", "must choose a list option");
     return false;
   }
-  if(document.getElementById("timetrialDDL").selectedIndex === 0){
+  if (document.getElementById("timetrialDDL").selectedIndex === 0) {
     displayErrorMsgToUser("time trial", "must choose a list option");
     return false;
   }
@@ -185,7 +216,38 @@ function isValidAddRequest() {
 
 function displayErrorMsgToUser(formFieldWithError, correctFieldFormat) {
   let errorField = document.getElementById("error").innerHTML;
-  let message = "<br>" + "Error: problem with " + "<strong>" + formFieldWithError +"</strong>" + " field. " + "<br>" + "Entry must follow this format:" + " <strong>" + correctFieldFormat + "</strong><br>";
+  let message =
+    "<br>" +
+    "Error: problem with " +
+    "<strong>" +
+    formFieldWithError +
+    "</strong>" +
+    " field. " +
+    "<br>" +
+    "Entry must follow this format:" +
+    " <strong>" +
+    correctFieldFormat +
+    "</strong><br>";
   let formattedMessage = message.fontcolor("red");
   document.getElementById("error").innerHTML = formattedMessage;
+}
+
+function printUpdateResult() {
+  //print results of user actions in update.html to the user screen
+  let resultMessage = sessionStorage.getItem("insertResult");
+  let message;
+  let formattedMessage;
+  if (resultMessage === "success") {
+    message = "new record saved";
+    formattedMessage = message.fontcolor("green");
+  }
+  if (resultMessage === "failure") {
+    message = "failed to add record";
+    formattedMessage = message.fontcolor("red");
+  }
+
+  sessionStorage.removeItem("insertResult");
+  if (formattedMessage != undefined) {
+    document.getElementById("result").innerHTML = formattedMessage;
+  }
 }
