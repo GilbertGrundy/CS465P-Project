@@ -28,32 +28,16 @@
         <form id="recordForm">
             <div>
                 <label for="terrain">Terrain</label>
-                <select name="terrain" id="terrainDDL" onchange="loadEvents()">
+                <select name="terrain" id="terrainDDL">
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
-                    <option value="Road">Outdoor</option>
-                    <option value="XC">Outdoor</option>
-                    <option value="Trail">Outdoor</option>
-                </select>
-                <br><br>
-                <label for="eventDDL">Event</label>
-                <select name="event" id="eventDDL">
-                    <option value="Marathon">Maration</option>
-                    <option value="Mile">1 Mile</option>
-                    <option value="10000M">10,000M</option>
-                    <option value="6400M">6,400M</option>
-                    <option value="5000M">5,000M</option>
-                    <option value="3000M">3,000M</option>
-                    <option value="2000M">2,000M</option>
-                    <option value="1500M">1,500M</option>
-                    <option value="1000M">1,000M</option>
-                    <option value="800M">800M</option>
-                    <option value="600M">600M</option>
-                    <option value="400M">400M</option>
-                    <option value="200M">200M</option>
+                    <option value="Road">Road</option>
+                    <option value="XC">XC</option>
+                    <option value="Trail">XC</option>
                 </select>
             </div>
             <br><br>
+            <input type="button" id="getEvents" value="getEvents" onclick="loadEvents()"></input>
             <input type="button" id="submitBtn" value="SubmitRecords" onclick="getRecordData()"></input>
         </form>
         <br><br>
@@ -70,6 +54,21 @@
         </section>
        
     </main>
+
+    <script>
+        function loadEvents1() {
+            let eventList = document.getElementById("eventDDLRecords");
+            let option = document.createElement('option');
+            let terrain = document.getElementById("terrainDDL");
+            option.value = terrain.value;
+            option.text = terrain.value;
+            eventList.appendChild(option);
+            console.log(option);
+            //eventList.appendChild(`<option value=\"` + terrain.value +`\">` + terrain.value + `</option>`);
+            //console.log(`<option value=\"` + terrain.value +`\">` + terrain.value + `</option>`);
+        }
+        </script>
+
 </body>
 
 </html>

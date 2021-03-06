@@ -67,6 +67,21 @@ app.post("/submitRecords", (req, res) => {
   });
 });
 
+app.post("/events", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  console.log("/events called!");
+  let queryString = "select distinct event from jbac_records.results where " 
+    + keys[0] + '="' + values[0] + '"' 
+    + " order by mark asc";
+  console.log(queryString);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
 //TODO: implement /update route
 app.post("/update", (req, res) => {
   let keys = Object.keys(req.body);
