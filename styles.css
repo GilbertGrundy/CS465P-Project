@@ -34,6 +34,15 @@ table, td{
     border: 1px solid black;
 }
 
+input, label {
+  display:block;
+}
+
+.insert{
+float:left;
+margin-right: 20px;
+}
+
 .banner{
     background-color: black;    
     position: relative;

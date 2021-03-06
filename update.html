@@ -36,38 +36,56 @@
             </div>
             <br>
             <div id="insertRecord">
-                <label for="markTB">Mark</label>
-                <input type="text" id="markTB" value="">
-                <label for="nameTB">Name</label>
-                <input type="text" id="nameTB" value="">
-                <label for="dateTB">Date</label>
-                <input type="text" id="dateTB" value="">
-                <label for="venueTB">Venue</label>
-                <input type="text" id="venueTB" value="">
-                <label for="eventTB">Event</label>
-                <input type="text" id="eventTB" value="">
-                <label for="terrainTB">Terrain</label>
-                <input type="text" id="terrainTB" value="">
-
-                <label for="sexDDL">Sex</label>
-                <select name="sex" id="sexDDL">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="M">M</option>
-                    <option value="F">F</option>
-                </select>
-                <label for="relayDDL">Relay</label>
-                <select name="relay" id="relayDDL">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-                <label for="timetrialDDL">Time Trial</label>
-                <select name="timetrial" id="timetrialDDL">
-                    <option value="" disabled selected>Select an option</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                </select>
-                <br><br>
+                <div class="insert">
+                    <label for="markTB">Mark</label>
+                    <input type="text" id="markTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="nameTB">Name</label>
+                    <input type="text" id="nameTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="dateTB">Date</label>
+                    <input type="text" id="dateTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="venueTB">Venue</label>
+                    <input type="text" id="venueTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="eventTB">Event</label>
+                    <input type="text" id="eventTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="terrainTB">Terrain</label>
+                    <input type="text" id="terrainTB" value="">
+                </div>
+                <br><br><br>
+                <div class="insert">
+                    <label for="sexDDL">Sex</label>
+                    <select name="sex" id="sexDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div class="insert">
+                    <label for="relayDDL">Relay</label>
+                    <select name="relay" id="relayDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="insert">
+                    <label for="timetrialDDL">Time Trial</label>
+                    <select name="timetrial" id="timetrialDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <br><br><br><br>
                 <input type="button" id="updateSubmitBtn" value="Submit" onclick="updateSubmitBtn_Click()"></input>
                 <div id="error"></div>
             </div>
