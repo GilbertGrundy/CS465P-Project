@@ -33,17 +33,23 @@ function getPerformanceData() {
         let tempRow;
         let mensTableRowCount;
         let womensTableRowCount;
-
+        
         if (data[i].sex === 0) {
           mensTableRowCount = document.getElementById("mensPerformanceTable")
             .rows.length;
           tempRow = mensTable.insertRow(mensTableRowCount);
+          if(mencount < 10) tempRow.className = "gold";
+          else if (mencount < 20) tempRow.className = "silver";
+          else if (mencount < 30) tempRow.className = "bronze";
           mencount++;
         } else {
           womensTableRowCount = document.getElementById(
             "womensPerformanceTable"
           ).rows.length;
           tempRow = womensTable.insertRow(womensTableRowCount);
+          if(womencount < 10) tempRow.className = "gold";
+          else if (womencount < 20) tempRow.className = "silver";
+          else if (womencount < 30) tempRow.className = "bronze";
           womencount++;
         }
         let tempCell1 = tempRow.insertCell(0);
@@ -51,15 +57,27 @@ function getPerformanceData() {
         let tempCell3 = tempRow.insertCell(2);
         let tempCell4 = tempRow.insertCell(3);
         let tempCell5 = tempRow.insertCell(4);
+        tempCell1.className = "rank";
+        tempCell2.className = "name";
+        tempCell3.className = "time";
+        tempCell4.className = "date";
+        tempCell5.className = "venue";
         if (data[i].sex === 0) {
           tempCell1.innerHTML = mensTableRowCount + 1;
         } else {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
+        let time = data[i].mark.toString();
+        while(time.indexOf("0") === 0 || time.indexOf(":") === 0){
+          time = time.substring(1,time.length);
+        }
+        while(time.indexOf(".00") == time.length -3){
+          time = time.substring(0,time.length -3);
+        }
         tempCell2.innerHTML = data[i].name;
-        if(data[i].relay == 1) tempCell3.innerHTML = data[i].mark + " (r)";
-        else if(data[i].timetrial == 1) tempCell3.innerHTML = data[i].mark + " +";
-        else tempCell3.innerHTML = data[i].mark;
+        if(data[i].relay == 1) tempCell3.innerHTML = time + " (r)";
+        else if(data[i].timetrial == 1) tempCell3.innerHTML = time + " +";
+        else tempCell3.innerHTML = time;
         tempCell4.innerHTML = data[i].day + " " + data[i].month + " " + data[i].year;
         tempCell5.innerHTML = data[i].venue;
       }
@@ -176,15 +194,25 @@ function getRecordData(){
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
+        tempCell1.className = "rank";
+        tempCell2.className = "name";
+        tempCell3.className = "time";
         if (data[i].sex === 0) {
           tempCell1.innerHTML = mensTableRowCount + 1;
         } else {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
         tempCell2.innerHTML = data[i].name;
-        if(data[i].relay == 1) tempCell3.innerHTML = data[i].mark + " (r)";
-        else if(data[i].timetrial == 1) tempCell3.innerHTML = data[i].mark + " +";
-        else tempCell3.innerHTML = data[i].mark;
+        let time = data[i].mark.toString();
+        while(time.indexOf("0") === 0 || time.indexOf(":") === 0){
+          time = time.substring(1,time.length);
+        }
+        while(time.indexOf(".00") == time.length -3){
+          time = time.substring(0,time.length -3);
+        }
+        if(data[i].relay == 1) tempCell3.innerHTML = time + " (r)";
+        else if(data[i].timetrial == 1) tempCell3.innerHTML = time + " +";
+        else tempCell3.innerHTML = time;
       }
       if(mencount == 0){
         let tempRow = document.getElementById("mensRecordTable").insertRow(0);
@@ -244,3 +272,9 @@ function loadEvents(){
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
 };
+
+function trim(x){
+  while(x[0] === "0" || x[0] === ":"){
+
+  }
+}

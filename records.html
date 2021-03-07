@@ -29,6 +29,7 @@
             <div>
                 <label for="terrain">Terrain</label>
                 <select name="terrain" id="terrainDDL" onchange="loadEvents()">
+                    <option value=" "></option>
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
                     <option value="Road">Road</option>
@@ -43,7 +44,7 @@
             <input type="button" id="submitBtn" value="SubmitRecords" onclick="getRecordData()"></input>
         </form>
         <br><br>
-        <section id="tables" class="tables">
+        <section id="tables" class="table_container">
             <div>
                 <h2><label for="mensRecordTable">Men</label></h2>
                 <table id="mensRecordTable" class="tables"></table>
@@ -53,7 +54,17 @@
                 <h2><label for="womensRecordTable">Women</label></h2>
                 <table id="womensRecordTable" class="tables"></table>
             </div>
-        </section> 
+        </section>
+        <!--<section class="flex-container">
+            <div class="flex-item item1">                
+                <h2><label for="mensRecordTable">Men</label></h2>
+                <table id="mensRecordTable" class="tables"></table>
+            </div>
+            <div class="flex-item item2">
+                <h2><label for="womensRecordTable">Women</label></h2>
+                <table id="womensRecordTable" class="tables"></table>
+            </div>
+          </section>-->
     </main>
 </body>
 

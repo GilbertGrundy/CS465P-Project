@@ -18,20 +18,103 @@ label{
   font-weight: bold;
 }
 
+h2{
+  font-weight: bolder;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.table_container{
+  margin: auto;
+  display: flex;
+  
+  font-weight: bold;
+  text-align: center;
+  border-radius: 5px;
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
 .tables{
+    margin: auto;
     margin-left: auto;
     margin-right: auto;
-    display: flex;
     text-align: center;
     border: 1px solid black;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 1em;
+    margin: 2ex;
+    color: black;
+    width: 90%;
+    flex-wrap: wrap;
+    display: inline-flex;
+    justify-content: space-evenly;
 }
 
 #tables{
     visibility: hidden;
+    color: black;
 }
 
-table, td{
+.test{
+  color: blue;
+}
+
+table{
+  border: 1px solid black;
+  border-radius: 5px;
+  overflow: hidden;
+  width: auto;
+  margin: 2ex;
+  margin-left: 2ex;
+  padding: 1.5ex;
+  background-color: black;
+}
+
+td{
     border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+    width: 10%;
+    padding: 0.5ex;
+}
+
+.rank{
+  width: 2em;
+}
+
+.name{
+  width: 15em;
+}
+
+.time{
+  width: 7em;
+}
+
+.date{
+  width: 15em;
+}
+
+.venue{
+  width: 15em;
+}
+
+.gold{
+  color:goldenrod;
+}
+
+.silver{
+  color:slategray;
+}
+
+.bronze{
+  color: sienna;
+}
+
+#tables>th,#tables>td{
+  width: 70%;
+  border-radius: 5px;
 }
 
 .banner{

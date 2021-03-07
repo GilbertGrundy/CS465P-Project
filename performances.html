@@ -24,11 +24,12 @@
             </div>
             <img id="logo" src="images/logo.png" alt="logo">
         </div>
-        <h1>Club Performances</h1>
+        <h1>Top 30 Club Performances</h1>
         <form id="performForm">
             <div>
                 <label for="terrain">Terrain</label>
                 <select name="terrain" id="terrainDDL" onchange="loadEvents()">
+                    <option value=" "></option>
                     <option value="Indoor">Indoor</option>
                     <option value="Outdoor">Outdoor</option>
                     <option value="Road">Road</option>
@@ -43,7 +44,7 @@
             <input type="button" id="submitBtn" value="SubmitPerformaces" onclick="getPerformanceData()"></input>
         </form>
         <br><br>
-        <section id="tables" class="tables">
+        <section id="tables" class="table_container">
             <div>
                 <h2><label for="mensPerformanceTable">Men</label></h2>
                 <table id="mensPerformanceTable" class="tables"></table>
