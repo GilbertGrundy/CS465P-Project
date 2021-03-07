@@ -53,9 +53,11 @@ function getPerformanceData() {
         } else {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
-        tempCell2.innerHTML = data[i].mark;
+        if(data[i].relay == 1) tempCell2.innerHTML = data[i].mark + " (r)";
+        else if(data[i].timetrial == 1) tempCell2.innerHTML = data[i].mark + " +";
+        else tempCell2.innerHTML = data[i].mark;
         tempCell3.innerHTML = data[i].name;
-        tempCell4.innerHTML = data[i].date_of.slice(0, 10);
+        tempCell4.innerHTML = data[i].day + " " + data[i].month + " " + data[i].year;
         tempCell5.innerHTML = data[i].venue;
       }
       document.getElementById("tables").style.visibility = "visible";
@@ -143,17 +145,19 @@ function getRecordData(){
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
-        let tempCell4 = tempRow.insertCell(3);
-        let tempCell5 = tempRow.insertCell(4);
+        // let tempCell4 = tempRow.insertCell(3);
+        // let tempCell5 = tempRow.insertCell(4);
         if (data[i].sex === 0) {
           tempCell1.innerHTML = mensTableRowCount + 1;
         } else {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
-        tempCell2.innerHTML = data[i].mark;
-        tempCell3.innerHTML = data[i].name;
-        tempCell4.innerHTML = data[i].date_of.slice(0, 10);
-        tempCell5.innerHTML = data[i].venue;
+        tempCell2.innerHTML = data[i].name;
+        if(data[i].relay == 1) tempCell3.innerHTML = data[i].mark + " (r)";
+        else if(data[i].timetrial == 1) tempCell3.innerHTML = data[i].mark + " +";
+        else tempCell3.innerHTML = data[i].mark;
+        // tempCell4.innerHTML = data[i].date_of.slice(0, 10);
+        // tempCell5.innerHTML = data[i].venue;
       }
       document.getElementById("tables").style.visibility = "visible";
     }
@@ -180,6 +184,10 @@ function loadEvents(){
     // Call a function when the state changes.
     console.log("In onreadystatechange");
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      var length = eventList.options.length;
+      for (i = length-1; i >= 0; i--) {
+        eventList.options[i].remove();
+      }
       let data = JSON.parse(xhr.responseText);
       console.log("Within IF");
       for (let i = 0; i < data.length; i++) {
