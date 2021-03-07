@@ -53,24 +53,8 @@
                 <h2><label for="womensRecordTable">Women</label></h2>
                 <table id="womensRecordTable" class="tables"></table>
             </div>
-        </section>
-       
+        </section> 
     </main>
-
-    <script>
-        function loadEvents1() {
-            let eventList = document.getElementById("eventDDLRecords");
-            let option = document.createElement('option');
-            let terrain = document.getElementById("terrainDDL");
-            option.value = terrain.value;
-            option.text = terrain.value;
-            eventList.appendChild(option);
-            console.log(option);
-            //eventList.appendChild(`<option value=\"` + terrain.value +`\">` + terrain.value + `</option>`);
-            //console.log(`<option value=\"` + terrain.value +`\">` + terrain.value + `</option>`);
-        }
-        </script>
-
 </body>
 
 </html>
