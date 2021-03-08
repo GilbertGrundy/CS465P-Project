@@ -140,6 +140,76 @@ app.post("/events", (req, res) => {
   });
 });
 
+app.post("/venues", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  let queryString = "select distinct venue from jbac_records.results where " 
+    + keys[0] + '="' + values[0] + '"' 
+    + " AND " + keys[1] + '="' + values[1] + '"' 
+    + " order by mark asc";
+  console.log(queryString);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
+app.post("/submitEventPerformances", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  console.log("In submitEventPerformances!");
+  //TODO: sanitize keys/values
+  let queryString = "(SELECT " +
+                        "name, " +
+                        "mark, " +
+                        "day(date_of) AS day, " +
+                        "monthname(date_of) AS month, " +
+                        "year(date_of) AS year, " +
+                        "venue, " +
+                        "sex, " +
+                        "relay, " +
+                        "timetrial " +
+                      "FROM " +
+                        "jbac_records.results " +
+                      "WHERE " +
+                        "terrain = \"" + values[0] + "\" " + 
+                        "AND	event = \"" + values[1] + "\" " + 
+                        "AND	venue = \"" + values[2] + "\" " + 
+                        "AND sex = 0 " +
+                      "ORDER BY " +
+                        "mark ASC) " +
+                      "UNION " +
+                      "(SELECT  " +
+                        "name, " +
+                        "mark, " +
+                        "day(date_of) AS day, " +
+                        "monthname(date_of) AS month, " +
+                        "year(date_of) AS year, " +
+                        "venue, " +
+                        "sex, " +
+                        "relay, " +
+                        "timetrial " +
+                      "FROM " +
+                        "jbac_records.results " +
+                      "WHERE " +
+                        "terrain = \"" + values[0] + "\" " + 
+                        "AND	event = \"" + values[1] + "\" " + 
+                        "AND	venue = \"" + values[2] + "\" " + 
+                        "AND sex = 1 " +
+                      "ORDER BY " +
+                        "mark ASC) ";
+  console.log(queryString);
+  let params =
+    keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";" + keys[2] + "=" + values[2] + ";";
+  console.log(params);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
 //TODO: implement /update route
 app.post("/update", (req, res) => {
   let keys = Object.keys(req.body);
