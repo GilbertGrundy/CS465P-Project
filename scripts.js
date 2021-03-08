@@ -344,6 +344,32 @@ function loadVenues(){
   xhr.send(params);
 };
 
+function loadAthletes(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:5000/athletes");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+  let athleteList = document.getElementById("athleteDDL");
+
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      var length = athleteList.options.length;
+      for (i = length-1; i >= 0; i--) {
+        athleteList.options[i].remove();
+      }
+      let data = JSON.parse(xhr.responseText);
+      for (let i = 0; i < data.length; i++) {
+        let option = document.createElement('option');
+        option.value = data[i].name;
+        option.text = data[i].name;
+        athleteList.appendChild(option);
+      }
+    }
+  }
+  xhr.send();
+};
+
 function getEventPerformanceData(){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/submitEventPerformances");
@@ -462,7 +488,148 @@ function getEventPerformanceData(){
   "&event=" +
   document.getElementById("eventDDL").value +
   "&venue=" +
-  document.getElementById("venueDDL").value;;
+  document.getElementById("venueDDL").value;
+  let params = new URLSearchParams(paramsString);
+  xhr.send(params);
+}
+
+function getAthleteData(){
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:5000/submitAthletePerformances");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Request finished. Do processing here.
+      let roadTable = document.getElementById("roadTable");
+      let xcTable = document.getElementById("xcTable");
+      let outdoorTable = document.getElementById("outdoorTable");
+      let indoorTable = document.getElementById("indoorTable");
+      let trailTable = document.getElementById("trailTable");
+      let data = JSON.parse(xhr.responseText);
+
+      //empty the tables if they have any old data in them
+      for (
+        var i = document.getElementById("roadTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("roadTable").deleteRow(i - 1);
+      }
+      for (
+        var i = document.getElementById("xcTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("xcTable").deleteRow(i - 1);
+      }
+      for (
+        var i = document.getElementById("outdoorTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("outdoorTable").deleteRow(i - 1);
+      }
+      for (
+        var i = document.getElementById("indoorTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("indoorTable").deleteRow(i - 1);
+      }
+      for (
+        var i = document.getElementById("trailTable").rows.length;
+        i > 0;
+        i--
+      ) {
+        document.getElementById("trailTable").deleteRow(i - 1);
+      }
+      //insert performance data into the performance.html mens/womens tables
+      for (let i = 0; i < data.length; i++) {
+        let tempRow;
+        let tableRowCount;
+        
+        if (data[i].terrain === "Road") {
+          tableRowCount = document.getElementById("roadTable")
+            .rows.length;
+          tempRow = roadTable.insertRow(tableRowCount);
+        } else if(data[i].terrain === "XC") {
+          tableRowCount = document.getElementById(
+            "xcTable"
+          ).rows.length;
+          tempRow = xcTable.insertRow(tableRowCount);
+        } else if(data[i].terrain === "Outdoor") {
+          tableRowCount = document.getElementById(
+            "outdoorTable"
+          ).rows.length;
+          tempRow = outdoorTable.insertRow(tableRowCount);
+        } else if(data[i].terrain === "Indoor") {
+          tableRowCount = document.getElementById(
+            "indoorTable"
+          ).rows.length;
+          tempRow = indoorTable.insertRow(tableRowCount);
+        } else if(data[i].terrain === "Trail") {
+          tableRowCount = document.getElementById(
+            "trailTable"
+          ).rows.length;
+          tempRow = trailTable.insertRow(tableRowCount);
+        }
+        let tempCell1 = tempRow.insertCell(0);
+        let tempCell2 = tempRow.insertCell(1);
+        let tempCell3 = tempRow.insertCell(2);
+        let tempCell4 = tempRow.insertCell(3);
+        tempCell1.className = "name";
+        tempCell2.className = "time";
+        tempCell3.className = "venue";
+        tempCell4.className = "date";
+
+        let time = data[i].mark.toString();
+        while(time.indexOf("0") === 0 || time.indexOf(":") === 0){         
+          time = time.substring(1,time.length);
+        }
+        if(time.indexOf(".00") == time.length -3){
+          time = time.substring(0,time.length -3);
+        }
+        tempCell1.innerHTML = data[i].event;
+        if(data[i].relay == 1) tempCell2.innerHTML = time + " (r)";
+        else if(data[i].timetrial == 1) tempCell2.innerHTML = time + " +";
+        else tempCell2.innerHTML = time;
+        tempCell3.innerHTML = data[i].venue;
+        tempCell4.innerHTML = data[i].day + " " + data[i].month + " " + data[i].year;
+      }/*
+      if(mencount == 0){
+        let tempRow = document.getElementById("mensPerformanceTable").insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        let tempCell2 = tempRow.insertCell(1);
+        let tempCell3 = tempRow.insertCell(2);
+        let tempCell4 = tempRow.insertCell(3);
+        let tempCell5 = tempRow.insertCell(4);
+        tempCell1.innerHTML = '#';
+        tempCell2.innerHTML = 'Empty Tub!';
+        tempCell3.innerHTML = '69:69:69.69';
+        tempCell4.innerHTML = '69 Banterbruary 2069';
+        tempCell5.innerHTML = 'Tubville';
+      }
+      if(womencount == 0){
+        let tempRow = document.getElementById("womensPerformanceTable").insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        let tempCell2 = tempRow.insertCell(1);
+        let tempCell3 = tempRow.insertCell(2);
+        let tempCell4 = tempRow.insertCell(3);
+        let tempCell5 = tempRow.insertCell(4);
+        tempCell1.innerHTML = '#';
+        tempCell2.innerHTML = 'Empty Tub!';
+        tempCell3.innerHTML = '69:69:69.69';
+        tempCell4.innerHTML = '69 Banterbruary 2069';
+        tempCell5.innerHTML = 'Tubville';
+      }*/
+      document.getElementById("tables").style.visibility = "visible";
+    }
+  }
+  let paramsString =
+  "name=" +
+  document.getElementById("athleteDDL").value;
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
 }

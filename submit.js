@@ -73,6 +73,37 @@ app.post("/submitPerformances", (req, res) => {
   });
 });
 
+app.post("/submitAthletePerformances", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  //TODO: sanitize keys/values
+  let queryString = "(SELECT " +
+                        "event, " +
+                        "mark, " +
+                        "venue, " +
+                        "day(date_of) AS day, " +
+                        "monthname(date_of) AS month, " +
+                        "year(date_of) AS year, " +
+                        "terrain, " +
+                        "relay, " +
+                        "timetrial " +
+                      "FROM " +
+                        "jbac_records.results " +
+                      "WHERE " +
+                        "name = \"" + values[0] + "\" " + 
+                      "ORDER BY " +
+                        "date_of DESC ";
+  console.log(queryString);
+  let params =
+    keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";";
+  console.log(params);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
 app.post("/submitRecords", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -148,6 +179,18 @@ app.post("/venues", (req, res) => {
     + keys[0] + '="' + values[0] + '"' 
     + " AND " + keys[1] + '="' + values[1] + '"' 
     + " order by mark asc";
+  console.log(queryString);
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.send(results);
+  });
+});
+
+app.post("/athletes", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  let queryString = "select distinct name from jbac_records.members";
   console.log(queryString);
 
   con.query(queryString, (error, results, fields) => {

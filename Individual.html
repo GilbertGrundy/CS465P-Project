@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Individual Performances</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="banner">
+            <div class="menu">
+                <button class="menuBtn">Menu</button>
+                <div class="menu-content">
+                    <a href="/index.html">Home</a>
+                    <a href="/records.html">Records</a>
+                    <a href="performances.html">Performances</a>
+                    <a href="event.html">Event Performances</a>
+                    <a href="gallery.html">Photo Gallery</a>
+                    <a href="events.html">Upcoming Events</a>
+                    <a href="update.html">Update</a>
+                </div>
+            </div>
+            <img id="logo" src="images/logo.png" alt="logo">
+        </div>
+        <h1>Individual Athlete Performances</h1>
+        <form id="performForm">
+            <div>
+                <label for="athlete">Athlete</label>
+                <select name="athlete" id="athleteDDL">
+                </select>
+            </div>
+            <br>
+            <input type="button" id="submitBtn" value="Submit" onclick="getAthleteData()"></input>
+        </form>
+        <br><br>
+        <section id="tables" class="table_container">
+            <div>
+                <h2><label for="roadTable">Road</label></h2>
+                <table id="roadTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="xcTable">XC</label></h2>
+                <table id="xcTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="outdoorTable">Outdoor</label></h2>
+                <table id="xcTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="indoorTable">Indoor</label></h2>
+                <table id="xcTable" class="tables"></table>
+            </div>
+            <br><br>
+            <div>
+                <h2><label for="trailTable">Trail</label></h2>
+                <table id="xcTable" class="tables"></table>
+            </div>
+        </section>
+       <script>
+           if(document.getElementById("athleteDDL").options.length < 2){
+            window.onload = loadAthletes();
+           }
+       </script>
+    </main>
+</body>
+
+</html>
