@@ -158,7 +158,6 @@ app.post("/venues", (req, res) => {
 app.post("/submitEventPerformances", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
-  console.log("In submitEventPerformances!");
   //TODO: sanitize keys/values
   let queryString = "(SELECT " +
                         "name, " +
@@ -199,7 +198,6 @@ app.post("/submitEventPerformances", (req, res) => {
                         "AND sex = 1 " +
                       "ORDER BY " +
                         "mark ASC) ";
-  console.log(queryString);
   let params =
     keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";" + keys[2] + "=" + values[2] + ";";
   console.log(params);
