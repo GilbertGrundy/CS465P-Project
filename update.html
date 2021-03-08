@@ -30,34 +30,67 @@
             <div>
                 <select name="actionDDL" id="actionDDL" onchange="showSelectedUpdateForm()">
                     <option value="" disabled selected>Select a request</option>
-                    <option value="add new record">add new record</option>
-                    <option value="update record">update record</option>
-                    <option value="delete record">delete record</option>
+                    <option value="add">add new record</option>
+                    <option value="update">update record</option>
+                    <option value="delete">delete record</option>
                 </select>
             </div>
             <br>
             <div id="insertRecord">
-                <label for="mark">Mark</label>
-                <input type="text" id="mark" value="">
-                <label for="name">Name</label>
-                <input type="text" id="name" value="">
-                <label for="date">Date</label>
-                <input type="text" id="date" value="">
-                <label for="venue">Venue</label>
-                <input type="text" id="venue" value="">
-                <label for="event">Event</label>
-                <input type="text" id="event" value="">
-                <label for="terrain">Terrain</label>
-                <input type="text" id="terrain" value="">
-                <label for="sex">Sex</label>
-                <input type="text" id="sex" value="">
-                <label for="relay">Relay</label>
-                <input type="text" id="relay" value="">
-                <label for="timetrial">Time Trial</label>
-                <input type="text" id="timetrial" value="">
+                <div class="insert">
+                    <label for="markTB">Mark</label>
+                    <input type="text" id="markTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="nameTB">Name</label>
+                    <input type="text" id="nameTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="dateTB">Date</label>
+                    <input type="text" id="dateTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="venueTB">Venue</label>
+                    <input type="text" id="venueTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="eventTB">Event</label>
+                    <input type="text" id="eventTB" value="">
+                </div>
+                <div class="insert">
+                    <label for="terrainTB">Terrain</label>
+                    <input type="text" id="terrainTB" value="">
+                </div>
+                <br><br><br>
+                <div class="insert">
+                    <label for="sexDDL">Sex</label>
+                    <select name="sex" id="sexDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div class="insert">
+                    <label for="relayDDL">Relay</label>
+                    <select name="relay" id="relayDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="insert">
+                    <label for="timetrialDDL">Time Trial</label>
+                    <select name="timetrial" id="timetrialDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <br><br><br><br>
+                <input type="button" id="updateSubmitBtn" value="Submit" onclick="updateSubmitBtn_Click()"></input>
+                <div id="error"></div>
             </div>
-            <br><br>
-            <input type="button" id="updateSubmitBtn" value="Submit" onclick="sendUserCRUDrequest()"></input>
+            <div id="result"></div>
         </form>
     </main>
 </body>

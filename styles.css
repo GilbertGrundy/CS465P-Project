@@ -117,6 +117,15 @@ td{
   border-radius: 5px;
 }
 
+input, label {
+  display:block;
+}
+
+.insert{
+float:left;
+margin-right: 20px;
+}
+
 .banner{
     background-color: black;    
     position: relative;
@@ -134,10 +143,6 @@ td{
 }
 
 #insertRecord{
-  display: none;
-}
-
-#updateSubmitBtn{
   display: none;
 }
 
