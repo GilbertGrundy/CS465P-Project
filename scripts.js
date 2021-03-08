@@ -2,7 +2,7 @@ window.onload = function () {
   printUpdateResult();
 };
 
-function performanceSubmitBtn_Click() {
+function getPerformanceData() {
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/submitPerformances");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
