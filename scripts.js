@@ -465,6 +465,7 @@ function getEventPerformanceData(){
     let params = new URLSearchParams(paramsString);
     xhr.send(params);
   }
+}
 
 function isValidAddRequest() {
   //pull and validate user input
