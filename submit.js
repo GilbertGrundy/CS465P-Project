@@ -77,7 +77,7 @@ app.post("/submitAthletePerformances", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
   //TODO: sanitize keys/values
-  let queryString = "(SELECT " +
+  let queryString = "SELECT " +
                         "event, " +
                         "mark, " +
                         "venue, " +
@@ -95,7 +95,7 @@ app.post("/submitAthletePerformances", (req, res) => {
                         "date_of DESC ";
   console.log(queryString);
   let params =
-    keys[0] + "=" + values[0] + ";" + keys[1] + "=" + values[1] + ";";
+    keys[0] + "=" + values[0] + ";";
   console.log(params);
 
   con.query(queryString, (error, results, fields) => {
