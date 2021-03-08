@@ -455,16 +455,16 @@ function getEventPerformanceData(){
       }
       document.getElementById("tables").style.visibility = "visible";
     }
-    let paramsString =
-    "terrain=" +
-    document.getElementById("terrainDDL").value +
-    "&event=" +
-    document.getElementById("eventDDL").value +
-    "&venue=" +
-    document.getElementById("venueDDL").value;;
-    let params = new URLSearchParams(paramsString);
-    xhr.send(params);
   }
+  let paramsString =
+  "terrain=" +
+  document.getElementById("terrainDDL").value +
+  "&event=" +
+  document.getElementById("eventDDL").value +
+  "&venue=" +
+  document.getElementById("venueDDL").value;;
+  let params = new URLSearchParams(paramsString);
+  xhr.send(params);
 }
 
 function isValidAddRequest() {
