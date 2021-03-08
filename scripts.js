@@ -68,10 +68,10 @@ function getPerformanceData() {
           tempCell1.innerHTML = womensTableRowCount + 1;
         }
         let time = data[i].mark.toString();
-        while(time.indexOf("0") === 0 || time.indexOf(":") === 0){
+        while(time.indexOf("0") === 0 || time.indexOf(":") === 0){         
           time = time.substring(1,time.length);
         }
-        while(time.indexOf(".00") == time.length -3){
+        if(time.indexOf(".00") == time.length -3){
           time = time.substring(0,time.length -3);
         }
         tempCell2.innerHTML = data[i].name;
@@ -204,10 +204,11 @@ function getRecordData(){
         }
         tempCell2.innerHTML = data[i].name;
         let time = data[i].mark.toString();
+        
         while(time.indexOf("0") === 0 || time.indexOf(":") === 0){
           time = time.substring(1,time.length);
         }
-        while(time.indexOf(".00") == time.length -3){
+        if(time.indexOf(".00") == time.length -3){
           time = time.substring(0,time.length -3);
         }
         if(data[i].relay == 1) tempCell3.innerHTML = time + " (r)";

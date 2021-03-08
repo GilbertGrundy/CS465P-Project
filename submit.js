@@ -128,7 +128,7 @@ app.post("/submitRecords", (req, res) => {
 app.post("/events", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
-  console.log("/events called!");
+  
   let queryString = "select distinct event from jbac_records.results where " 
     + keys[0] + '="' + values[0] + '"' 
     + " order by mark asc";
