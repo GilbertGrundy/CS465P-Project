@@ -14,20 +14,8 @@ function getPerformanceData() {
       let data = JSON.parse(xhr.responseText);
 
       //empty the tables if they have any old data in them
-      for (
-        var i = document.getElementById("mensPerformanceTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("mensPerformanceTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("womensPerformanceTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("womensPerformanceTable").deleteRow(i - 1);
-      }
+      for (var i = mensTable.rows.length; i > 0; i--) mensTable.deleteRow(i - 1);  
+      for (var i = womensTable.rows.length; i > 0; i--) womensTable.deleteRow(i - 1); 
       let mencount = 0;
       let womencount = 0;
       //insert performance data into the performance.html mens/womens tables
@@ -199,20 +187,8 @@ function getRecordData(){
       let data = JSON.parse(xhr.responseText);
 
       //empty the tables if they have any old data in them
-      for (
-        var i = document.getElementById("mensRecordTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("mensRecordTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("womensRecordTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("womensRecordTable").deleteRow(i - 1);
-      }
+      for (var i = mensTable.rows.length; i > 0; i--) mensTable.deleteRow(i - 1);  
+      for (var i = womensTable.rows.length; i > 0; i--) womensTable.deleteRow(i - 1); 
       //insert performance data into the performance.html mens/womens tables
       let mencount = 0;
       let womencount = 0;
@@ -384,20 +360,8 @@ function getEventPerformanceData(){
       let data = JSON.parse(xhr.responseText);
 
       //empty the tables if they have any old data in them
-      for (
-        var i = document.getElementById("mensPerformanceTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("mensPerformanceTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("womensPerformanceTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("womensPerformanceTable").deleteRow(i - 1);
-      }
+      for (var i = mensTable.rows.length; i > 0; i--) mensTable.deleteRow(i - 1);  
+      for (var i = womensTable.rows.length; i > 0; i--) womensTable.deleteRow(i - 1);  
       let mencount = 0;
       let womencount = 0;
       //insert performance data into the performance.html mens/womens tables
@@ -407,17 +371,14 @@ function getEventPerformanceData(){
         let womensTableRowCount;
         
         if (data[i].sex === 0) {
-          mensTableRowCount = document.getElementById("mensPerformanceTable")
-            .rows.length;
+          mensTableRowCount = mensTable.rows.length;
           tempRow = mensTable.insertRow(mensTableRowCount);
           if(mencount < 10) tempRow.className = "gold";
           else if (mencount < 20) tempRow.className = "silver";
           else if (mencount < 30) tempRow.className = "bronze";
           mencount++;
         } else {
-          womensTableRowCount = document.getElementById(
-            "womensPerformanceTable"
-          ).rows.length;
+          womensTableRowCount = womensTable.rows.length;
           tempRow = womensTable.insertRow(womensTableRowCount);
           if(womencount < 10) tempRow.className = "gold";
           else if (womencount < 20) tempRow.className = "silver";
@@ -510,69 +471,30 @@ function getAthleteData(){
       let data = JSON.parse(xhr.responseText);
 
       //empty the tables if they have any old data in them
-      for (
-        var i = document.getElementById("roadTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("roadTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("xcTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("xcTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("outdoorTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("outdoorTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("indoorTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("indoorTable").deleteRow(i - 1);
-      }
-      for (
-        var i = document.getElementById("trailTable").rows.length;
-        i > 0;
-        i--
-      ) {
-        document.getElementById("trailTable").deleteRow(i - 1);
-      }
+      for (var i = roadTable.rows.length; i > 0; i--) roadTable.deleteRow(i - 1);
+      for (var i = xcTable.rows.length; i > 0; i--) xcTable.deleteRow(i - 1);
+      for (var i = outdoorTable.rows.length; i > 0; i--) outdoorTable.deleteRow(i - 1);
+      for (var i = indoorTable.rows.length; i > 0; i--) indoorTable.deleteRow(i - 1);
+      for (var i = trailTable.rows.length; i > 0; i--) trailTable.deleteRow(i - 1);
       //insert performance data into the performance.html mens/womens tables
       for (let i = 0; i < data.length; i++) {
         let tempRow;
         let tableRowCount;
         
         if (data[i].terrain === "Road") {
-          tableRowCount = document.getElementById("roadTable")
-            .rows.length;
+          tableRowCount = roadTable.rows.length;
           tempRow = roadTable.insertRow(tableRowCount);
         } else if(data[i].terrain === "XC") {
-          tableRowCount = document.getElementById(
-            "xcTable"
-          ).rows.length;
+          tableRowCount = xcTable.rows.length;
           tempRow = xcTable.insertRow(tableRowCount);
         } else if(data[i].terrain === "Outdoor") {
-          tableRowCount = document.getElementById(
-            "outdoorTable"
-          ).rows.length;
+          tableRowCount = outdoorTable.rows.length;
           tempRow = outdoorTable.insertRow(tableRowCount);
         } else if(data[i].terrain === "Indoor") {
-          tableRowCount = document.getElementById(
-            "indoorTable"
-          ).rows.length;
+          tableRowCount = indoorTable.rows.length;
           tempRow = indoorTable.insertRow(tableRowCount);
         } else if(data[i].terrain === "Trail") {
-          tableRowCount = document.getElementById(
-            "trailTable"
-          ).rows.length;
+          tableRowCount = trailTable.rows.length;
           tempRow = trailTable.insertRow(tableRowCount);
         }
         let tempCell1 = tempRow.insertCell(0);
