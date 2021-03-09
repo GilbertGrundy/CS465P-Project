@@ -72,7 +72,7 @@ function getPerformanceData() {
         tempCell5.innerHTML = data[i].venue;
       }
       if(mencount == 0){
-        let tempRow = document.getElementById("mensPerformanceTable").insertRow(0);
+        let tempRow = mensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
@@ -85,7 +85,7 @@ function getPerformanceData() {
         tempCell5.innerHTML = 'Tubville';
       }
       if(womencount == 0){
-        let tempRow = document.getElementById("womensPerformanceTable").insertRow(0);
+        let tempRow = womensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
@@ -519,33 +519,33 @@ function getAthleteData(){
         else tempCell2.innerHTML = time;
         tempCell3.innerHTML = data[i].venue;
         tempCell4.innerHTML = data[i].day + " " + data[i].month + " " + data[i].year;
-      }/*
-      if(mencount == 0){
-        let tempRow = document.getElementById("mensPerformanceTable").insertRow(0);
-        let tempCell1 = tempRow.insertCell(0);
-        let tempCell2 = tempRow.insertCell(1);
-        let tempCell3 = tempRow.insertCell(2);
-        let tempCell4 = tempRow.insertCell(3);
-        let tempCell5 = tempRow.insertCell(4);
-        tempCell1.innerHTML = '#';
-        tempCell2.innerHTML = 'Empty Tub!';
-        tempCell3.innerHTML = '69:69:69.69';
-        tempCell4.innerHTML = '69 Banterbruary 2069';
-        tempCell5.innerHTML = 'Tubville';
       }
-      if(womencount == 0){
-        let tempRow = document.getElementById("womensPerformanceTable").insertRow(0);
+      if(roadTable.rows.length == 0){
+        let tempRow = roadTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
-        let tempCell2 = tempRow.insertCell(1);
-        let tempCell3 = tempRow.insertCell(2);
-        let tempCell4 = tempRow.insertCell(3);
-        let tempCell5 = tempRow.insertCell(4);
-        tempCell1.innerHTML = '#';
-        tempCell2.innerHTML = 'Empty Tub!';
-        tempCell3.innerHTML = '69:69:69.69';
-        tempCell4.innerHTML = '69 Banterbruary 2069';
-        tempCell5.innerHTML = 'Tubville';
-      }*/
+        tempCell1.innerHTML = 'Empty Tub!';
+      }
+      if(xcTable.rows.length == 0){
+        let tempRow = xcTable.insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        tempCell1.innerHTML = 'Empty Tub!';
+      }
+      if(outdoorTable.rows.length == 0){
+        let tempRow = outdoorTable.insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        tempCell1.innerHTML = 'Empty Tub!';
+      }
+      if(indoorTable.rows.length == 0){
+        let tempRow = indoorTable.insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        tempCell1.innerHTML = 'Empty Tub!';
+      }
+      if(trailTable.rows.length == 0){
+        let tempRow = trailTable.insertRow(0);
+        let tempCell1 = tempRow.insertCell(0);
+        tempCell1.innerHTML = 'Empty Tub!';
+      }
+
       document.getElementById("tables").style.visibility = "visible";
     }
   }
