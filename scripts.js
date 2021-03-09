@@ -25,17 +25,14 @@ function getPerformanceData() {
         let womensTableRowCount;
         
         if (data[i].sex === 0) {
-          mensTableRowCount = document.getElementById("mensPerformanceTable")
-            .rows.length;
+          mensTableRowCount = mensTable.rows.length;
           tempRow = mensTable.insertRow(mensTableRowCount);
           if(mencount < 10) tempRow.className = "gold";
           else if (mencount < 20) tempRow.className = "silver";
           else if (mencount < 30) tempRow.className = "bronze";
           mencount++;
         } else {
-          womensTableRowCount = document.getElementById(
-            "womensPerformanceTable"
-          ).rows.length;
+          womensTableRowCount = womensTable.rows.length;
           tempRow = womensTable.insertRow(womensTableRowCount);
           if(womencount < 10) tempRow.className = "gold";
           else if (womencount < 20) tempRow.className = "silver";
@@ -197,14 +194,11 @@ function getRecordData(){
         let mensTableRowCount;
         let womensTableRowCount;
         if (data[i].sex === 0) {
-          mensTableRowCount = document.getElementById("mensRecordTable")
-            .rows.length;
+          mensTableRowCount = mensTable.rows.length;
           tempRow = mensTable.insertRow(mensTableRowCount);
           mencount++;
         } else {
-          womensTableRowCount = document.getElementById(
-            "womensRecordTable"
-          ).rows.length;
+          womensTableRowCount = womensTable.rows.length;
           tempRow = womensTable.insertRow(womensTableRowCount);
           womencount++;
         }
@@ -233,7 +227,7 @@ function getRecordData(){
         else tempCell3.innerHTML = time;
       }
       if(mencount == 0){
-        let tempRow = document.getElementById("mensRecordTable").insertRow(0);
+        let tempRow = mensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
@@ -242,7 +236,7 @@ function getRecordData(){
         tempCell3.innerHTML = '69:69:69.69';
       }
       if(womencount == 0){
-        let tempRow = document.getElementById("womensRecordTable").insertRow(0);
+        let tempRow = womensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
@@ -415,7 +409,7 @@ function getEventPerformanceData(){
         tempCell5.innerHTML = data[i].venue;
       }
       if(mencount == 0){
-        let tempRow = document.getElementById("mensPerformanceTable").insertRow(0);
+        let tempRow = mensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
@@ -428,7 +422,7 @@ function getEventPerformanceData(){
         tempCell5.innerHTML = 'Tubville';
       }
       if(womencount == 0){
-        let tempRow = document.getElementById("womensPerformanceTable").insertRow(0);
+        let tempRow = womensTable.insertRow(0);
         let tempCell1 = tempRow.insertCell(0);
         let tempCell2 = tempRow.insertCell(1);
         let tempCell3 = tempRow.insertCell(2);
