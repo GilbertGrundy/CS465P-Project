@@ -5,6 +5,9 @@ window.onload = function () {
   if (sessionStorage.getItem("deleteResult") != null) {
     printDeleteResult();
   }
+  if (sessionStorage.getItem("modifyResult") != null) {
+    printModifyResult();
+  }
 };
 
 function getPerformanceData() {
@@ -226,6 +229,10 @@ function deleteSubmitBtn_Click() {
   console.log(paramsString);
   let params = new URLSearchParams(paramsString);
   xhr.send(params);
+}
+
+function modifySubmitBtn_Click(){
+
 }
 
 function getRecordData() {
@@ -757,4 +764,8 @@ function printDeleteResult(){
     if (formattedMessage != undefined) {
       document.getElementById("deleteResult").innerHTML = formattedMessage;
     }
+}
+
+function printModifyResult(){
+  
 }

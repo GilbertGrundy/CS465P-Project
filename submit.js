@@ -314,7 +314,6 @@ app.post("/update", (req, res) => {
   });
 });
 
-//TODO: implement /delete route
 app.post("/delete", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -346,6 +345,11 @@ app.post("/delete", (req, res) => {
     }
     res.send(results);
   });
+});
+
+//TODO: implement modify route
+app.post("/modify", (req, res) => {
+  
 });
 
 app.listen(port, () => {
