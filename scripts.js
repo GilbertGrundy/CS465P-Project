@@ -122,10 +122,17 @@ function showSelectedUpdateForm() {
   document.getElementById("result").innerHTML = ""; //clear results messages
   if (document.getElementById("actionDDL").selectedIndex === 1) {
     document.getElementById("deleteRecord").style.display = "none";
+    document.getElementById("modifyRecord").style.display = "none";
     document.getElementById("insertRecord").style.display = "block";
+  }
+  if (document.getElementById("actionDDL").selectedIndex === 2) {
+    document.getElementById("insertRecord").style.display = "none";
+    document.getElementById("deleteRecord").style.display = "none";
+    document.getElementById("modifyRecord").style.display = "inline-block";
   }
   if (document.getElementById("actionDDL").selectedIndex === 3) {
     document.getElementById("insertRecord").style.display = "none";
+    document.getElementById("modifyRecord").style.display = "none";
     document.getElementById("deleteRecord").style.display = "inline-block";
   }
 }
@@ -231,8 +238,74 @@ function deleteSubmitBtn_Click() {
   xhr.send(params);
 }
 
-function modifySubmitBtn_Click(){
+function modifySubmitBtn_Click() {
+  //clear any error messages from previous user actions
+  document.getElementById("modifyError").innerHTML = "";
 
+  let requestType = document.getElementById("actionDDL").value;
+  if (requestType === "modify") {
+    if (isValidModifyRequest() === false) {
+      console.log("Invalid user input dectected.  Terminating script.");
+      return;
+    }
+  }
+
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:5000/modify");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Request finished. Do processing here.
+      let data = JSON.parse(xhr.responseText);
+      sessionStorage.setItem("modifyResult", data.message);
+      location.reload();
+    }
+  };
+
+  let paramsString =
+    "name=" +
+    document.getElementById("searchNameTB").value +
+    "&" +
+    "date_of=" +
+    document.getElementById("searchDateTB").value +
+    "&" +
+    "venue=" +
+    document.getElementById("searchVenueTB").value +
+    "&" +
+    "event=" +
+    document.getElementById("searchEventTB").value +
+    "&" +
+    "mark=" +
+    document.getElementById("newMarkTB").value +
+    "&" +
+    "name=" +
+    document.getElementById("newNameTB").value +
+    "&" +
+    "date_of=" +
+    document.getElementById("newDateTB").value +
+    "&" +
+    "venue=" +
+    document.getElementById("newVenueTB").value +
+    "&" +
+    "event=" +
+    document.getElementById("newEventTB").value +
+    "&" +
+    "terrain=" +
+    document.getElementById("newTerrainTB").value +
+    "&" +
+    "sex=" +
+    document.getElementById("newSexDDL").value +
+    "&" +
+    "relay=" +
+    document.getElementById("newRelayDDL").value +
+    "&" +
+    "timetrial=" +
+    document.getElementById("newTimetrialDDL").value;
+  console.log(paramsString);
+  let params = new URLSearchParams(paramsString);
+  xhr.send(params);
 }
 
 function getRecordData() {
@@ -703,8 +776,14 @@ function isValidAddRequest() {
 
   return true;
 }
+
 //TODO: implement user input validation for delete requests
 function isValidDeleteRequest() {
+  return true;
+}
+
+//TODO: implement user input validation for modify requests
+function isValidModifyRequest(){
   return true;
 }
 
@@ -746,26 +825,24 @@ function printUpdateResult() {
   }
 }
 
-function printDeleteResult(){
-    //print results of deleting record in update.html to the user screen
-    let resultMessage = sessionStorage.getItem("deleteResult");
-    let message;
-    let formattedMessage;
-    if (resultMessage === "delete success") {
-      message = "successfully deleted record";
-      formattedMessage = message.fontcolor("green");
-    }
-    if (resultMessage === "delete failure") {
-      message = "failed to delete record";
-      formattedMessage = message.fontcolor("red");
-    }
-  
-    sessionStorage.removeItem("deleteResult");
-    if (formattedMessage != undefined) {
-      document.getElementById("deleteResult").innerHTML = formattedMessage;
-    }
+function printDeleteResult() {
+  //print results of deleting record in update.html to the user screen
+  let resultMessage = sessionStorage.getItem("deleteResult");
+  let message;
+  let formattedMessage;
+  if (resultMessage === "delete success") {
+    message = "successfully deleted record";
+    formattedMessage = message.fontcolor("green");
+  }
+  if (resultMessage === "delete failure") {
+    message = "failed to delete record";
+    formattedMessage = message.fontcolor("red");
+  }
+
+  sessionStorage.removeItem("deleteResult");
+  if (formattedMessage != undefined) {
+    document.getElementById("deleteResult").innerHTML = formattedMessage;
+  }
 }
 
-function printModifyResult(){
-  
-}
+function printModifyResult() {}
