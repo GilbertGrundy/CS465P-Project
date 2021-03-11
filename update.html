@@ -116,6 +116,82 @@
             </div>
             <div id="deleteResult"></div>
         </form>
+        <form id="modifyForm">
+            <div id="modifyRecord">
+                <h2>find athlete record</h2>
+                <div class="modify">
+                    <label for="searchNameTB">Name</label>
+                    <input type="text" id="searchNameTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="searchDateTB">Date</label>
+                    <input type="text" id="searchDateTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="searchVenueTB">Venue</label>
+                    <input type="text" id="searchVenueTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="searchEventTB">Event</label>
+                    <input type="text" id="searchEventTB" value="">
+                </div>
+                <br><br>
+                <h2>enter new record info</h2>
+                <div class="modify">
+                    <label for="newMarkTB">Mark</label>
+                    <input type="text" id="newMarkTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="newNameTB">Name</label>
+                    <input type="text" id="newNameTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="newDateTB">Date</label>
+                    <input type="text" id="newDateTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="newVenueTB">Venue</label>
+                    <input type="text" id="newVenueTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="newEventTB">Event</label>
+                    <input type="text" id="newEventTB" value="">
+                </div>
+                <div class="modify">
+                    <label for="newTerrainTB">Terrain</label>
+                    <input type="text" id="newTerrainTB" value="">
+                </div>
+                <br><br><br>
+                <div class="modify">
+                    <label for="newSexDDL">Sex</label>
+                    <select name="sex" id="newSexDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="M">M</option>
+                        <option value="F">F</option>
+                    </select>
+                </div>
+                <div class="modify">
+                    <label for="newRelayDDL">Relay</label>
+                    <select name="relay" id="newRelayDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <div class="modify">
+                    <label for="newTimetrialDDL">Time Trial</label>
+                    <select name="timetrial" id="newTimetrialDDL">
+                        <option value="" disabled selected>Select an option</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                    </select>
+                </div>
+                <br><br><br><br>
+                <input type="button" id="updateSubmitBtn" value="Submit" onclick="updateSubmitBtn_Click()"></input>
+                <div id="error"></div>
+            </div>
+            <div id="result"></div>
+        </form>
     </main>
 </body>
 

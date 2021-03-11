@@ -696,7 +696,7 @@ function isValidAddRequest() {
 
   return true;
 }
-
+//TODO: implement user input validation for delete requests
 function isValidDeleteRequest() {
   return true;
 }

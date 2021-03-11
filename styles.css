@@ -130,6 +130,10 @@ margin-right: 20px;
   display: inline-block;
   }
 
+.modify{
+display: inline-block;
+}
+
 .banner{
     background-color: black;    
     position: relative;
@@ -176,6 +180,14 @@ margin-right: 20px;
 
 #deleteRecord{
   display: none;
+}
+
+#modifyRecord{
+  display: none;
+}
+
+#modifyForm{
+  border: none;
 }
 
   .menuBtn {
