@@ -109,7 +109,14 @@ function getPerformanceData() {
 
 function showSelectedUpdateForm() {
   document.getElementById("result").innerHTML = ""; //clear results messages
-  document.getElementById("insertRecord").style.display = "block";
+  if (document.getElementById("actionDDL").selectedIndex === 1) {
+    document.getElementById("deleteRecord").style.display = "none";
+    document.getElementById("insertRecord").style.display = "block";
+  }
+  if (document.getElementById("actionDDL").selectedIndex === 3) {
+    document.getElementById("insertRecord").style.display = "none";
+    document.getElementById("deleteRecord").style.display = "inline-block";
+  }
 }
 
 function updateSubmitBtn_Click() {

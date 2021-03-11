@@ -126,6 +126,10 @@ float:left;
 margin-right: 20px;
 }
 
+.delete{
+  display: inline-block;
+  }
+
 .banner{
     background-color: black;    
     position: relative;
@@ -167,6 +171,10 @@ margin-right: 20px;
 }
 
 #insertRecord{
+  display: none;
+}
+
+#deleteRecord{
   display: none;
 }
 
