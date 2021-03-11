@@ -253,6 +253,7 @@ app.post("/submitEventPerformances", (req, res) => {
   });
 });
 
+//TODO: implement /update route
 app.post("/update", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -315,7 +316,36 @@ app.post("/update", (req, res) => {
 
 //TODO: implement /delete route
 app.post("/delete", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
 
+  let queryString =
+    "delete from jbac_records.testTable where name = " +
+    "'" +
+    values[0] +
+    "'" +
+    " and date = " +
+    "'" +
+    values[1] +
+    "'" +
+    " and venue = " +
+    "'" +
+    values[2] +
+    "'" +
+    " and event = " +
+    "'" +
+    values[3] +
+    "'";
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    if (error) {
+      results.message = "failure";
+    } else {
+      results.message = "success";
+    }
+    res.send(results);
+  });
 });
 
 app.listen(port, () => {
