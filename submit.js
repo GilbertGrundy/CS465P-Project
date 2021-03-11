@@ -253,7 +253,6 @@ app.post("/submitEventPerformances", (req, res) => {
   });
 });
 
-//TODO: implement /update route
 app.post("/update", (req, res) => {
   let keys = Object.keys(req.body);
   let values = Object.values(req.body);
@@ -312,6 +311,11 @@ app.post("/update", (req, res) => {
     }
     res.send(results);
   });
+});
+
+//TODO: implement /delete route
+app.post("/delete", (req, res) => {
+
 });
 
 app.listen(port, () => {

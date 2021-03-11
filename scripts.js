@@ -177,6 +177,10 @@ function updateSubmitBtn_Click() {
   xhr.send(params);
 }
 
+function deleteSubmitBtn_Click(){
+
+}
+
 function getRecordData(){
   var xhr = new XMLHttpRequest();
   xhr.open("POST", "http://127.0.0.1:5000/submitRecords");
@@ -632,6 +636,10 @@ function isValidAddRequest() {
     return false;
   }
 
+  return true;
+}
+
+function isValidDeleteRequest(){
   return true;
 }
 
