@@ -324,7 +324,7 @@ app.post("/delete", (req, res) => {
     "'" +
     values[0] +
     "'" +
-    " and date = " +
+    " and date_of = " +
     "'" +
     values[1] +
     "'" +
@@ -340,9 +340,9 @@ app.post("/delete", (req, res) => {
   con.query(queryString, (error, results, fields) => {
     res.header("Access-Control-Allow-Origin", "*");
     if (error) {
-      results.message = "failure";
+      results.message = "delete failure";
     } else {
-      results.message = "success";
+      results.message = "delete success";
     }
     res.send(results);
   });
