@@ -1,5 +1,10 @@
 window.onload = function () {
-  printUpdateResult();
+  if (sessionStorage.getItem("insertResult") != null) {
+    printUpdateResult();
+  }
+  if (sessionStorage.getItem("deleteResult") != null) {
+    printDeleteResult();
+  }
 };
 
 function getPerformanceData() {
@@ -201,7 +206,7 @@ function deleteSubmitBtn_Click() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Do processing here.
       let data = JSON.parse(xhr.responseText);
-      sessionStorage.setItem("insertResult", data.message);
+      sessionStorage.setItem("deleteResult", data.message);
       location.reload();
     }
   };
@@ -715,7 +720,7 @@ function displayErrorMsgToUser(formFieldWithError, correctFieldFormat) {
 }
 
 function printUpdateResult() {
-  //print results of user actions in update.html to the user screen
+  //print results of adding new record in update.html to the user screen
   let resultMessage = sessionStorage.getItem("insertResult");
   let message;
   let formattedMessage;
@@ -732,4 +737,24 @@ function printUpdateResult() {
   if (formattedMessage != undefined) {
     document.getElementById("result").innerHTML = formattedMessage;
   }
+}
+
+function printDeleteResult(){
+    //print results of deleting record in update.html to the user screen
+    let resultMessage = sessionStorage.getItem("deleteResult");
+    let message;
+    let formattedMessage;
+    if (resultMessage === "delete success") {
+      message = "successfully deleted record";
+      formattedMessage = message.fontcolor("green");
+    }
+    if (resultMessage === "delete failure") {
+      message = "failed to delete record";
+      formattedMessage = message.fontcolor("red");
+    }
+  
+    sessionStorage.removeItem("deleteResult");
+    if (formattedMessage != undefined) {
+      document.getElementById("deleteResult").innerHTML = formattedMessage;
+    }
 }
