@@ -415,10 +415,10 @@ app.post("/modify", (req, res) => {
   con.query(queryString, (error, results, fields) => {
     res.header("Access-Control-Allow-Origin", "*");
     if(error){
-      results.message = 'failure';
+      results.message = 'modify failure';
     }
     else{
-      results.message = 'success';
+      results.message = 'modify success';
     }
     res.send(results);
   });

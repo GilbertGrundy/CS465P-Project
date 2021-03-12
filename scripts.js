@@ -120,6 +120,8 @@ function getPerformanceData() {
 
 function showSelectedUpdateForm() {
   document.getElementById("result").innerHTML = ""; //clear results messages
+  document.getElementById("deleteResult").innerHTML = ""; //clear results messages
+  document.getElementById("modifyResult").innerHTML = ""; //clear results messages
   if (document.getElementById("actionDDL").selectedIndex === 1) {
     document.getElementById("deleteRecord").style.display = "none";
     document.getElementById("modifyRecord").style.display = "none";
@@ -259,7 +261,7 @@ function modifySubmitBtn_Click() {
     if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
       // Request finished. Do processing here.
       let data = JSON.parse(xhr.responseText);
-      sessionStorage.setItem("modifyResult", data.message);
+      sessionStorage.setItem("modifyResult", data.changedRows);
       location.reload();
     }
   };
@@ -845,4 +847,22 @@ function printDeleteResult() {
   }
 }
 
-function printModifyResult() {}
+function printModifyResult() {
+    //print results of deleting record in update.html to the user screen
+    let changedRows = parseInt(sessionStorage.getItem("modifyResult"));
+    let message;
+    let formattedMessage;
+    if (changedRows > 0) {
+      message = "successfully updated record";
+      formattedMessage = message.fontcolor("green");
+    }
+    if (changedRows === 0) {
+      message = "failed to update record";
+      formattedMessage = message.fontcolor("red");
+    }
+  
+    sessionStorage.removeItem("modifyResult");
+    if (formattedMessage != undefined) {
+      document.getElementById("modifyResult").innerHTML = formattedMessage;
+    }
+}
