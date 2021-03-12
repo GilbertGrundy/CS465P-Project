@@ -349,7 +349,79 @@ app.post("/delete", (req, res) => {
 
 //TODO: implement modify route
 app.post("/modify", (req, res) => {
+  let keys = Object.keys(req.body);
+  let values = Object.values(req.body);
+  let sex = values[6];
+  let relay = values[7];
+  let timeTrial;
+  let columnQuery = "(";
+  let valueQuery = ""
+  let whereQuery = " where ";
+  //TODO: validate keys and values
+
+  //format column string for database
+  for (let i = 0; i < values.length; i++) {
+    if (values[i].length > 0) {
+      columnQuery += keys[i];
+      if(values[i][0] !== "0" && values[i][0] !== undefined && values[i][0].length > 1){
+      whereQuery += values[i][0];
+      }
+      if (i < values.length - 1) {
+        columnQuery += ",";
+      }
+    }
+  }
+  columnQuery += ")";
+
+  //format value string for database
+  for (let i = 0; i < 6; i++) {
+    if (values[i].length > 0) {
+    let temp = values[i][1];
+      if (values[i][1] !== "0" && values[i][1] !== undefined && values[i][1].length > 1) {
+        valueQuery += keys[i] + " = " + "'" + values[i][1] + "',";
+      }
+      if(i > 3){
+        valueQuery += keys[i] + " = " + "'" + values[i] + "'";
+      }
+      if (i < 6 && i > 3) {
+        valueQuery += ",";
+      }
+    }
+  }
   
+  if (values[10] === "M") {
+    valueQuery += keys[6] + " = 0,"
+  } else {
+    valueQuery += keys[6] + " = 1, "
+  }
+
+  if (values[11] === "Yes") {
+    valueQuery += keys[7] + " = 1, ";
+  } else {
+    valueQuery += keys[7] + " = 0, ";
+  }
+
+  if (values[12] === "Yes") {
+    valueQuery += keys[8] + " = 1, ";
+  } else {
+    valueQuery += keys[8] + " = 0 ";
+  }
+
+  let queryString =
+    "update jbac_records.testTable set " + valueQuery + " where " + keys[0] + " = " + "'" + values[0][0] + "' and " + keys[1] + " = " + "'" + values[1][0]
++ "' and " + keys[2] + " = '" + values[2][0] + "' and " + keys[3] + " = '" + values[3][0] + "'";
+
+
+  con.query(queryString, (error, results, fields) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    if(error){
+      results.message = 'failure';
+    }
+    else{
+      results.message = 'success';
+    }
+    res.send(results);
+  });
 });
 
 app.listen(port, () => {

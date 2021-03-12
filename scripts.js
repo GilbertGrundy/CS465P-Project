@@ -123,7 +123,7 @@ function showSelectedUpdateForm() {
   if (document.getElementById("actionDDL").selectedIndex === 1) {
     document.getElementById("deleteRecord").style.display = "none";
     document.getElementById("modifyRecord").style.display = "none";
-    document.getElementById("insertRecord").style.display = "block";
+    document.getElementById("insertRecord").style.display = "inline-block";
   }
   if (document.getElementById("actionDDL").selectedIndex === 2) {
     document.getElementById("insertRecord").style.display = "none";
@@ -783,7 +783,7 @@ function isValidDeleteRequest() {
 }
 
 //TODO: implement user input validation for modify requests
-function isValidModifyRequest(){
+function isValidModifyRequest() {
   return true;
 }
 
