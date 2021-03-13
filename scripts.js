@@ -120,8 +120,11 @@ function getPerformanceData() {
 
 function showSelectedUpdateForm() {
   document.getElementById("result").innerHTML = ""; //clear results messages
-  document.getElementById("deleteResult").innerHTML = ""; //clear results messages
-  document.getElementById("modifyResult").innerHTML = ""; //clear results messages
+  document.getElementById("deleteResult").innerHTML = ""; 
+  document.getElementById("modifyResult").innerHTML = ""; 
+
+  document.getElementById("error").innerHTML = ""; //clear error messages
+
   if (document.getElementById("actionDDL").selectedIndex === 1) {
     document.getElementById("deleteRecord").style.display = "none";
     document.getElementById("modifyRecord").style.display = "none";
@@ -199,7 +202,7 @@ function updateSubmitBtn_Click() {
 
 function deleteSubmitBtn_Click() {
   //clear any error messages from previous user actions
-  document.getElementById("deleteError").innerHTML = "";
+  document.getElementById("error").innerHTML = "";
 
   let requestType = document.getElementById("actionDDL").value;
   if (requestType === "delete") {
@@ -242,7 +245,7 @@ function deleteSubmitBtn_Click() {
 
 function modifySubmitBtn_Click() {
   //clear any error messages from previous user actions
-  document.getElementById("modifyError").innerHTML = "";
+  document.getElementById("error").innerHTML = "";
 
   let requestType = document.getElementById("actionDDL").value;
   if (requestType === "modify") {
@@ -781,6 +784,48 @@ function isValidAddRequest() {
 
 //TODO: implement user input validation for delete requests
 function isValidDeleteRequest() {
+
+  regex = /[A-Za-z]{1,127} [A-Za-z]{1,127}/;
+  let name = document.getElementById("deleteNameTB").value;
+  let isValidName = regex.test(name);
+  if (isValidName === false) {
+    displayErrorMsgToUser(
+      "name",
+      "[first name] [last name] *only upper/lower case letters allowed"
+    );
+    return false;
+  }
+
+  regex = /[0-9]{4}-[0-9]{2}-[0-9]{2}/;
+  let date = document.getElementById("deleteDateTB").value;
+  let isValidDate = regex.test(date);
+  if (isValidDate === false) {
+    displayErrorMsgToUser("date", "yyyy-mm-dd");
+    return false;
+  }
+
+  regex = /[a-zA-Z ]{1,255}/;
+  let venue = document.getElementById("deleteVenueTB").value;
+  let isValidVenue = regex.test(venue);
+  if (isValidVenue === false) {
+    displayErrorMsgToUser(
+      "venue",
+      "only upper/lower case letters and spaces allowed"
+    );
+    return false;
+  }
+
+  regex = /[a-zA-Z0-9 ]{1,255}/;
+  let event = document.getElementById("deleteEventTB").value;
+  let isValidEvent = regex.test(event);
+  if (isValidEvent === false) {
+    displayErrorMsgToUser(
+      "event",
+      "only alphanumberic characters and spaces allowed"
+    );
+    return false;
+  }
+
   return true;
 }
 
