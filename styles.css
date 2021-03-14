@@ -80,6 +80,10 @@ td{
     padding: 0.5ex;
 }
 
+th{
+  color: white;
+}
+
 .rank{
   width: 2em;
 }

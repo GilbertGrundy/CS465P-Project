@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Club Racing Totals</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="scripts.js"></script>
+</head>
+
+<body>
+    <main>
+        <div class="banner">
+            <div class="menu">
+                <button class="menuBtn">Menu</button>
+                <div class="menu-content">
+                    <a href="/index.html">Home</a>
+                    <a href="/records.html">Records</a>
+                    <a href="performances.html">Top 30 Performances</a>
+                    <a href="event.html">Event Performances</a>
+                    <a href="Individual.html">Individual</a>
+                    <a href="race_totals.html">Race Totals</a>
+                    <a href="update.html">Update</a>
+                </div>
+            </div>
+            <img id="logo" src="images/logo.png" alt="logo">
+        </div>
+        <h1>Club Racing Totals</h1>
+        <br><br>
+        <section id="tables" class="table_container">
+            <div>
+                <h2><label for="totals">Race totals</label></h2>
+                <table id="totals" class="tables">
+ 
+                </table>
+            </div>
+            <script>
+                if(document.getElementById("totals").rows.length < 2){
+                    //document.getElementById("tables").style.visibility = "visible";
+                    window.onload = loadRaceTotals();
+                }
+            </script>
+    </main>
+</body>
+
+</html>

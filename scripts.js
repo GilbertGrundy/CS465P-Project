@@ -120,8 +120,8 @@ function getPerformanceData() {
 
 function showSelectedUpdateForm() {
   document.getElementById("result").innerHTML = ""; //clear results messages
-  document.getElementById("deleteResult").innerHTML = ""; 
-  document.getElementById("modifyResult").innerHTML = ""; 
+  document.getElementById("deleteResult").innerHTML = "";
+  document.getElementById("modifyResult").innerHTML = "";
 
   document.getElementById("error").innerHTML = ""; //clear error messages
 
@@ -704,6 +704,101 @@ function getAthleteData() {
   xhr.send(params);
 }
 
+function loadRaceTotals() {
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "http://127.0.0.1:5000/submitRaceTotals");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+  xhr.onreadystatechange = function () {
+    // Call a function when the state changes.
+    if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+      // Request finished. Do processing here.
+      let totalTable = document.getElementById("totals");
+      let data = JSON.parse(xhr.responseText);
+
+      //empty the tables if they have any old data in them
+      for (var i = totalTable.rows.length; i > 0; i--) {
+        totalTable.deleteRow(i - 1);
+      }
+      //insert performance data into the performance.html mens/womens tables
+      let header = totalTable.insertRow(0);
+      let name = header.insertCell(0);
+      let xc = header.insertCell(1);
+      let road = header.insertCell(2);
+      let outdoor = header.insertCell(3);
+      let indoor = header.insertCell(4);
+      let trail = header.insertCell(5);
+      let totals = header.insertCell(6);
+      name.className = "name";
+      xc.className = "name";
+      road.className = "name";
+      outdoor.className = "name";
+      indoor.className = "name";
+      trail.className = "name";
+      totals.className = "name";
+      xc.innerHTML = "XC";
+      road.innerHTML = "Road";
+      outdoor.innerHTML = "Outdoor";
+      indoor.innerHTML = "Indoor";
+      trail.innerHTML = "Trail";
+      totals.innerHTML = "Total";
+
+      let terrainTotals = [0, 0, 0, 0, 0];
+      let total = 0;
+      let tempRow;
+      let tableRowCount;
+      let lastname = "nobody";
+
+      for (let i = 0; i < data.length; i++) {
+        if (data[i].terrain === "XC") {
+          terrainTotals[0] = data[i].num;
+        } else if (data[i].terrain === "Road") {
+          terrainTotals[1] = data[i].num;
+        } else if (data[i].terrain === "Outdoor") {
+          terrainTotals[2] = data[i].num;
+        } else if (data[i].terrain === "Indoor") {
+          terrainTotals[3] = data[i].num;
+        } else if (data[i].terrain === "Trail") {
+          terrainTotals[4] = data[i].num;
+        }
+        total += data[i].num;
+        if (i === data.length - 1 || data[i].name !== data[i + 1].name) {
+          tableRowCount = totalTable.rows.length;
+          tempRow = totalTable.insertRow(tableRowCount);
+          let tempCell0 = tempRow.insertCell(0);
+          let tempCell1 = tempRow.insertCell(1);
+          let tempCell2 = tempRow.insertCell(2);
+          let tempCell3 = tempRow.insertCell(3);
+          let tempCell4 = tempRow.insertCell(4);
+          let tempCell5 = tempRow.insertCell(5);
+          let tempCell6 = tempRow.insertCell(6);
+          tempCell0.className = "name";
+          tempCell1.className = "name";
+          tempCell2.className = "name";
+          tempCell3.className = "name";
+          tempCell4.className = "name";
+          tempCell5.className = "name";
+          tempCell6.className = "name";
+          tempCell0.innerHTML = data[i].name;
+          tempCell1.innerHTML = terrainTotals[0];
+          tempCell2.innerHTML = terrainTotals[1];
+          tempCell3.innerHTML = terrainTotals[2];
+          tempCell4.innerHTML = terrainTotals[3];
+          tempCell5.innerHTML = terrainTotals[4];
+          tempCell6.innerHTML = total;
+          for (let j = 0; j < 5; j++) {
+            terrainTotals[j] = 0;
+          }
+          total = 0;
+        }
+        lastname = data[i].name;
+      }
+      document.getElementById("tables").style.visibility = "visible";
+    }
+  };
+  xhr.send();
+}
+
 function isValidAddRequest() {
   //pull and validate user input
   let regex = /[0-9]{2}:[0-9]{2}:[0-9]{2}.[0-9]{2}/;
@@ -784,7 +879,6 @@ function isValidAddRequest() {
 
 //TODO: implement user input validation for delete requests
 function isValidDeleteRequest() {
-
   regex = /[A-Za-z]{1,127} [A-Za-z]{1,127}/;
   let name = document.getElementById("deleteNameTB").value;
   let isValidName = regex.test(name);
@@ -893,21 +987,21 @@ function printDeleteResult() {
 }
 
 function printModifyResult() {
-    //print results of deleting record in update.html to the user screen
-    let changedRows = parseInt(sessionStorage.getItem("modifyResult"));
-    let message;
-    let formattedMessage;
-    if (changedRows > 0) {
-      message = "successfully updated record";
-      formattedMessage = message.fontcolor("green");
-    }
-    if (changedRows === 0) {
-      message = "failed to update record";
-      formattedMessage = message.fontcolor("red");
-    }
-  
-    sessionStorage.removeItem("modifyResult");
-    if (formattedMessage != undefined) {
-      document.getElementById("modifyResult").innerHTML = formattedMessage;
-    }
+  //print results of deleting record in update.html to the user screen
+  let changedRows = parseInt(sessionStorage.getItem("modifyResult"));
+  let message;
+  let formattedMessage;
+  if (changedRows > 0) {
+    message = "successfully updated record";
+    formattedMessage = message.fontcolor("green");
+  }
+  if (changedRows === 0) {
+    message = "failed to update record";
+    formattedMessage = message.fontcolor("red");
+  }
+
+  sessionStorage.removeItem("modifyResult");
+  if (formattedMessage != undefined) {
+    document.getElementById("modifyResult").innerHTML = formattedMessage;
+  }
 }
