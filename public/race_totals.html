@@ -14,8 +14,8 @@
             <div class="menu">
                 <button class="menuBtn">Menu</button>
                 <div class="menu-content">
-                    <a href="/index.html">Home</a>
-                    <a href="/records.html">Records</a>
+                    <a href="index.html">Home</a>
+                    <a href="records.html">Records</a>
                     <a href="performances.html">Top 30 Performances</a>
                     <a href="event.html">Event Performances</a>
                     <a href="Individual.html">Individual</a>
@@ -30,13 +30,12 @@
         <section id="tables" class="table_container">
             <div>
                 <h2><label for="totals">Race totals</label></h2>
-                <table id="totals" class="tables">
+                <table id="totals" class="raceTotals">
  
                 </table>
             </div>
             <script>
                 if(document.getElementById("totals").rows.length < 2){
-                    //document.getElementById("tables").style.visibility = "visible";
                     window.onload = loadRaceTotals();
                 }
             </script>
