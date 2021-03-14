@@ -532,34 +532,6 @@ app.post("/modify", (req, res) => {
   });
 });
 
-// app.get("/index.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/index.html'));
-// });
-
-// app.get("/event.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/event.html'));
-// });
-
-// app.get("/Individual.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/Individual.html'));
-// });
-
-// app.get("/performances.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/performances.html'));
-// });
-
-// app.get("/race_totals.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/race_totals.html'));
-// });
-
-// app.get("/records.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/records.html'));
-// });
-
-// app.get("/update.html", (req, res) => {
-//   res.sendFile(path.join(__dirname + '/update.html'));
-// });
-
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });

@@ -26,10 +26,9 @@ h1, h2, label, input, select{
 .table_container{
   margin: auto;
   display: flex;
-  
   font-weight: bold;
   text-align: center;
-  border-radius: 5px;
+  border-radius: 2em;
   width: 100%;
   display: inline-flex;
   justify-content: space-evenly;
@@ -40,11 +39,11 @@ h1, h2, label, input, select{
     margin-left: auto;
     margin-right: auto;
     text-align: center;
-    border: 1px solid black;
+    border: 0.25em solid black;
     font-weight: bold;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 1em;
-    margin: 2ex;
+    margin: 2em;
     color: black;
     width: 90%;
     flex-wrap: wrap;
@@ -52,32 +51,55 @@ h1, h2, label, input, select{
     justify-content: space-evenly;
 }
 
+.tablesTerrainContainer{
+  margin: auto;
+  display:inline;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 2em;
+  width: 60%;
+}
+
+.table_terrain{
+  margin: auto;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  border: 0.5em solid black;
+  font-weight: bold;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 1em;
+  margin: 0.2em;
+  color: black;
+  width: 60%;
+  flex-wrap: wrap;
+  display: inline-flex;
+  justify-content: space-evenly;
+}
+
 #tables{
     visibility: hidden;
     color: black;
 }
 
-.test{
-  color: blue;
-}
-
 table{
-  border: 1px solid black;
-  border-radius: 5px;
+  border: 0.25em solid black;
+  border-radius: 0.5em;
   overflow: hidden;
   width: auto;
-  margin: 2ex;
-  margin-left: 2ex;
-  padding: 1.5ex;
+  margin: 0.5em;
+  margin-left: 0.5em;
+  padding: 0.1em;
   background-color: black;
 }
 
 td{
-    border: 1px solid black;
-    border-radius: 5px;
+    border: 0.01em solid black;
+    border-radius: 0.2em;
     background-color: white;
     width: 10%;
-    padding: 0.5ex;
+    padding: 0.25em;
+    font-size: 0.95em;
 }
 
 th{
@@ -85,11 +107,11 @@ th{
 }
 
 .rank{
-  width: 2em;
+  width: 4em;
 }
 
 .name{
-  width: 15em;
+  width: 20em;
 }
 
 .time{
@@ -101,7 +123,7 @@ th{
 }
 
 .venue{
-  width: 15em;
+  width: 12em;
 }
 
 .gold{
@@ -118,7 +140,7 @@ th{
 
 #tables>th,#tables>td{
   width: 70%;
-  border-radius: 5px;
+  border-radius: 1em;
 }
 
 input, label {
