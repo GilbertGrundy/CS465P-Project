@@ -12,7 +12,7 @@ window.onload = function () {
 
 function getPerformanceData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://34.209.5.41/:5000/submitPerformances");
+  xhr.open("POST", "http://34.209.5.41:5000/submitPerformances");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
