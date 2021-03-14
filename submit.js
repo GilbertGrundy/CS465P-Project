@@ -5,6 +5,10 @@ const rp = require("request-promise");
 const connectionInfoDB = require("./connectionConfig.js");
 const mysql = require("mysql");
 const { query } = require("express");
+let myHost = process.env.HOST;
+let myUser = process.env.USER;
+let myPassword = process.env.PASSWORD;
+let myDB = process.env.DATABASE;
 
 let con = mysql.createConnection({
   host: connectionInfoDB.storageConfig.host,
