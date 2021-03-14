@@ -12,7 +12,7 @@ window.onload = function () {
 
 function getPerformanceData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/submitPerformances");
+  xhr.open("POST", "http://34.209.5.41/:5000/submitPerformances");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -155,7 +155,7 @@ function updateSubmitBtn_Click() {
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/update");
+  xhr.open("POST", "http://34.209.5.41:5000/update");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -213,7 +213,7 @@ function deleteSubmitBtn_Click() {
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/delete");
+  xhr.open("POST", "http://34.209.5.41:5000/delete");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -256,7 +256,7 @@ function modifySubmitBtn_Click() {
   }
 
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/modify");
+  xhr.open("POST", "http://34.209.5.41:5000/modify");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -315,7 +315,7 @@ function modifySubmitBtn_Click() {
 
 function getRecordData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/submitRecords");
+  xhr.open("POST", "http://34.209.5.41:5000/submitRecords");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -404,7 +404,7 @@ function getRecordData() {
 
 function loadEvents() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/events");
+  xhr.open("POST", "http://34.209.5.41:5000/events");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   let eventList = document.getElementById("eventDDL");
@@ -432,7 +432,7 @@ function loadEvents() {
 
 function loadVenues() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/venues");
+  xhr.open("POST", "http://34.209.5.41:5000/venues");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   let venueList = document.getElementById("venueDDL");
@@ -464,7 +464,7 @@ function loadVenues() {
 
 function loadAthletes() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/athletes");
+  xhr.open("POST", "http://34.209.5.41:5000/athletes");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   let athleteList = document.getElementById("athleteDDL");
@@ -490,7 +490,7 @@ function loadAthletes() {
 
 function getEventPerformanceData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/submitEventPerformances");
+  xhr.open("POST", "http://34.209.5.41:5000/submitEventPerformances");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -601,7 +601,7 @@ function getEventPerformanceData() {
 
 function getAthleteData() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/submitAthletePerformances");
+  xhr.open("POST", "http://34.209.5.41:5000/submitAthletePerformances");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
@@ -706,7 +706,7 @@ function getAthleteData() {
 
 function loadRaceTotals() {
   var xhr = new XMLHttpRequest();
-  xhr.open("POST", "http://127.0.0.1:5000/submitRaceTotals");
+  xhr.open("POST", "http://34.209.5.41:5000/submitRaceTotals");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
   xhr.onreadystatechange = function () {
