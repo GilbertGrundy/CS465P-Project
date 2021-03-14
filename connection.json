@@ -1,6 +1,0 @@
-{
-    "host": "jbac-records.cxtoqkeaqczl.us-west-2.rds.amazonaws.com",
-    "user": "jbac",
-    "password": "so2269Fast!",
-    "database"  : "jbac_records"
-    }
